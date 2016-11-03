@@ -1,0 +1,690 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ioc?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="自己动手写Django app的教学网址:https://my.oschina.net/davidxp/blog/109460创建mysite目录 django-admin.py startproject mysite这个命令作用是:这将创建在当前目录创建一个mysite目录
+ 前提是从命令行上cd到你想储存你代码的目录,然后生成各种子目录.
+
+首先需要注意的是文件目录 
+ 这里面的文件大致作用:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django与数据库MySQL连接的用法">
+<meta property="og:url" content="http://yoursite.com/2016/11/03/Django-MySQL/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="自己动手写Django app的教学网址:https://my.oschina.net/davidxp/blog/109460创建mysite目录 django-admin.py startproject mysite这个命令作用是:这将创建在当前目录创建一个mysite目录
+ 前提是从命令行上cd到你想储存你代码的目录,然后生成各种子目录.
+
+首先需要注意的是文件目录 
+ 这里面的文件大致作用:">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101235809263">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101140456999">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101162634343">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101162701372">
+<meta property="og:updated_time" content="2016-11-02T15:35:16.127Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django与数据库MySQL连接的用法">
+<meta name="twitter:description" content="自己动手写Django app的教学网址:https://my.oschina.net/davidxp/blog/109460创建mysite目录 django-admin.py startproject mysite这个命令作用是:这将创建在当前目录创建一个mysite目录
+ 前提是从命令行上cd到你想储存你代码的目录,然后生成各种子目录.
+
+首先需要注意的是文件目录 
+ 这里面的文件大致作用:">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161101235809263">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/03/Django-MySQL/"/>
+
+
+  <title> Django与数据库MySQL连接的用法 | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django与数据库MySQL连接的用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T15:10:52+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="自己动手写Django-app的教学网址-https-my-oschina-net-davidxp-blog-109460"><a href="#自己动手写Django-app的教学网址-https-my-oschina-net-davidxp-blog-109460" class="headerlink" title="自己动手写Django app的教学网址:https://my.oschina.net/davidxp/blog/109460"></a>自己动手写Django app的教学网址:<a href="https://my.oschina.net/davidxp/blog/109460" target="_blank" rel="external">https://my.oschina.net/davidxp/blog/109460</a></h3><h2 id="创建mysite目录"><a href="#创建mysite目录" class="headerlink" title="创建mysite目录"></a>创建mysite目录</h2><p> <code>django-admin.py startproject mysite</code>这个命令作用是:这将创建在当前目录创建一个mysite目录</p>
+<p> 前提是从命令行上cd到你想储存你代码的目录,然后生成各种子目录.</p>
+<p><img src="http://img.blog.csdn.net/20161101235809263" alt="这里写图片描述"></p>
+<h2 id="首先需要注意的是文件目录"><a href="#首先需要注意的是文件目录" class="headerlink" title="首先需要注意的是文件目录"></a>首先需要注意的是文件目录</h2><p> <img src="http://img.blog.csdn.net/20161101140456999" alt="文件目录"></p>
+<p> 这里面的文件大致作用:</p>
+<ul>
+<li>books这个 文件夹存放的是新建数据库的各种信息</li>
+<li>books/templates这个目录下装的是网页的布局,当然这个网页的布局就是show.html所提供</li>
+<li>books/views.py定义函数,并且把show.html引入进去,文件内容如下:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">from django.shortcuts import render,render_to_response</div><div class="line"></div><div class="line">from django.template import loader</div><div class="line"></div><div class="line">from books import models</div><div class="line"></div><div class="line"># Create your views here.</div><div class="line"></div><div class="line">def show(request):</div><div class="line">    # publisher_list = [&#123;&apos;name&apos;:&quot;gongye&quot;,&apos;city&apos;:&apos;beijing&apos;&#125;]</div><div class="line">    publisher_list = models.Publisher.objects.all()</div><div class="line">    return render_to_response(&apos;show.html&apos;,&#123;&apos;publisher_list&apos;:publisher_list&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>books/models.py文件存放的是你所创建的数据库,代码如下:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">#coding=utf-8</div><div class="line">from __future__ import unicode_literals</div><div class="line"></div><div class="line">from django.db import models</div><div class="line"></div><div class="line"># Create your models here.</div><div class="line"></div><div class="line">class Publisher(models.Model):</div><div class="line">    name = models.CharField(max_length = 30)</div><div class="line">    address = models.CharField(max_length = 50)</div><div class="line">    city = models.CharField(max_length = 60)</div><div class="line">    state_province = models.CharField(max_length = 30)</div><div class="line">    country = models.CharField(max_length = 50)</div><div class="line">    website = models.URLField()</div><div class="line"># __unicode__这个函数用来返回某个值可以很好的用于查询和admin界面的显示</div><div class="line">    def __unicode__(self):</div><div class="line">        return self.name</div><div class="line"></div><div class="line">class Author(models.Model):</div><div class="line">    first_name = models.CharField(max_length = 30)</div><div class="line">    last_name = models.CharField(max_length = 40)</div><div class="line">    email = models.EmailField(blank = True,verbose_name = &apos;e-mail&apos;)</div><div class="line">    def __unicode__(self):</div><div class="line">        return u&apos;%s %s&apos;%(self.first_name,self.last_name)</div><div class="line"></div><div class="line">class Book(models.Model):</div><div class="line">    title = models.CharField(max_length = 100)</div><div class="line">    author = models.ManyToManyField(Author)</div><div class="line">    publisher = models.ForeignKey(Publisher)</div><div class="line">    publication_date = models.DateField(blank = True,null = True)</div><div class="line">    def __unicode__(self):</div><div class="line">        return self.title</div></pre></td></tr></table></figure>
+<ul>
+<li><p>books下其他的文件就是在创建的过程中自己产生的.</p>
+</li>
+<li><p>website/templates文件里存放的是各种显示的静态网页布局,这么多html文件,只要你在访问测试的时候,端口号后面加上html的文件名字就行.比如,我要访问templates/base.html文件,输入网址:localhost:8000/base就可以.</p>
+</li>
+<li><p>website/settings.py文件是Django的设置文档,里面的INSTALLED_APPS添加多个应用,比如这里面我九添加了books应用,代码如下:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = [</div><div class="line">    &apos;django.contrib.admin&apos;,</div><div class="line">    &apos;django.contrib.auth&apos;,</div><div class="line">    &apos;django.contrib.contenttypes&apos;,</div><div class="line">    &apos;django.contrib.sessions&apos;,</div><div class="line">    &apos;django.contrib.messages&apos;,</div><div class="line">    &apos;django.contrib.staticfiles&apos;,</div><div class="line">    &apos;books&apos;,</div><div class="line">]</div></pre></td></tr></table></figure>
+<p> 增加模板文件夹,能够引入templates,代码如下:(同样都是在settings中修改)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">TEMPLATES = [</div><div class="line">    &#123;</div><div class="line">        &apos;BACKEND&apos;: &apos;django.template.backends.django.DjangoTemplates&apos;,</div><div class="line">        &apos;DIRS&apos;: [&apos;templates&apos;],</div><div class="line">        &apos;APP_DIRS&apos;: True,</div><div class="line">        &apos;OPTIONS&apos;: &#123;</div><div class="line">            &apos;context_processors&apos;: [</div><div class="line">                &apos;django.template.context_processors.debug&apos;,</div><div class="line">                &apos;django.template.context_processors.request&apos;,</div><div class="line">                &apos;django.contrib.auth.context_processors.auth&apos;,</div><div class="line">                &apos;django.contrib.messages.context_processors.messages&apos;,</div><div class="line">            ],</div><div class="line">        &#125;,</div><div class="line">    &#125;,</div><div class="line">]</div></pre></td></tr></table></figure>
+<ul>
+<li>website/urls.py作用是引导url(资源管理器),代码如下:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#coding=utf-8</div><div class="line">&quot;&quot;&quot;website URL Configuration</div><div class="line"></div><div class="line">The `urlpatterns` list routes URLs to views. For more information please see:</div><div class="line">    https://docs.djangoproject.com/en/1.9/topics/http/urls/</div><div class="line">Examples:</div><div class="line">Function views</div><div class="line">    1. Add an import:  from my_app import views</div><div class="line">    2. Add a URL to urlpatterns:  url(r&apos;^$&apos;, views.home, name=&apos;home&apos;)</div><div class="line">Class-based views</div><div class="line">    1. Add an import:  from other_app.views import Home</div><div class="line">    2. Add a URL to urlpatterns:  url(r&apos;^$&apos;, Home.as_view(), name=&apos;home&apos;)</div><div class="line">Including another URLconf</div><div class="line">    1. Import the include() function: from django.conf.urls import url, include</div><div class="line">    2. Add a URL to urlpatterns:  url(r&apos;^blog/&apos;, include(&apos;blog.urls&apos;))</div><div class="line">&quot;&quot;&quot;</div><div class="line">from django.conf.urls import *</div><div class="line">from django.contrib import admin</div><div class="line">from website.views import *</div><div class="line"></div><div class="line">urlpatterns = patterns(&apos;website.views&apos;,</div><div class="line">    url(r&apos;^admin/&apos;, admin.site.urls),</div><div class="line">    (r&apos;^$&apos;,&apos;my_homepage_view&apos;),</div><div class="line">    (r&apos;^hello/$&apos;,&apos;hello&apos;),</div><div class="line">    (r&apos;^time/$&apos;,&apos;current_datetime&apos;),#显示当前时间</div><div class="line">    (r&apos;^time/plus/(\d&#123;1,2&#125;)/$&apos;,&apos;hour_ahead&apos;),#显示几小时后的时间</div><div class="line">    (r&apos;xiaomi/$&apos;,&apos;xiaomi&apos;),</div><div class="line">    (r&apos;name/$&apos;,&apos;name&apos;),</div><div class="line">    (r&apos;meta/$&apos;,&apos;display_meta&apos;),</div><div class="line">    )</div><div class="line"></div><div class="line">urlpatterns += patterns(&apos;books.views&apos;,</div><div class="line">    url(r&apos;^show/&apos;,&apos;show&apos;),</div><div class="line">    url(r&apos;search_form/$&apos;,&apos;search_form&apos;),</div><div class="line">    url(r&apos;search/$&apos;,&apos;search&apos;),</div><div class="line">)</div></pre></td></tr></table></figure>
+<h3 id="注意-urls-py与views-py文件是对应的-在views-py中定义函数-一定要添加到urls-py中去"><a href="#注意-urls-py与views-py文件是对应的-在views-py中定义函数-一定要添加到urls-py中去" class="headerlink" title="注意: urls.py与views.py文件是对应的,在views.py中定义函数,一定要添加到urls.py中去."></a>注意: urls.py与views.py文件是对应的,在views.py中定义函数,一定要添加到urls.py中去.</h3><ul>
+<li>website/views.py文件是定义各种函数,便于使用,代码如下:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">#coding=utf-8</div><div class="line"></div><div class="line">from django.http import HttpResponse</div><div class="line">import datetime</div><div class="line"></div><div class="line">from django.template import loader</div><div class="line">from django.shortcuts import render,render_to_response</div><div class="line"></div><div class="line">def hello(request):</div><div class="line">    return HttpResponse(&quot;Hello World&quot;)</div><div class="line"></div><div class="line">def my_homepage_view(request):</div><div class="line">    return HttpResponse(&quot;你好&quot;)</div><div class="line"></div><div class="line">def current_datetime(request):</div><div class="line">    now = datetime.datetime.now()</div><div class="line">    html = &quot;&lt;html&gt;&lt;body&gt;It is now %s.&lt;/body&gt;&lt;/html&gt;&quot;%now</div><div class="line">    return HttpResponse(html)</div><div class="line"></div><div class="line">def hour_ahead(request,offset): #定义函数，这个函数名在urls.py文件中必须存在</div><div class="line">    offset = int(offset)</div><div class="line">    dt = datetime.datetime.now() + datetime.timedelta(hours = offset)</div><div class="line">    html = &quot;&lt;html&gt;&lt;body&gt;In %s hour(s),it will be %s.&lt;/body&gt;&lt;/html&gt;&quot;%(offset,dt)</div><div class="line">    return HttpResponse(html)</div><div class="line"></div><div class="line">def xiaomi(request):</div><div class="line">    t = loader.get_template(&quot;xiaomi.html&quot;)</div><div class="line">    html = t.render(&#123;&#125;)</div><div class="line">    return HttpResponse(html)</div><div class="line"></div><div class="line">d = &#123;&apos;name&apos;:&apos;zhangsan&apos;,&apos;age&apos;:&apos;15&apos;&#125;  #可以引入字典</div><div class="line">l = [&apos;zhangsan&apos;,&apos;14&apos;]  #引入列表</div><div class="line"></div><div class="line">#定义变量</div><div class="line">class A:</div><div class="line">    age = 11</div><div class="line">a = A()</div><div class="line"></div><div class="line">#定义函数</div><div class="line">def fun():</div><div class="line">    return &quot;hello&quot;</div><div class="line"></div><div class="line">def name(request):</div><div class="line"></div><div class="line">    today = 1 #1代表判断正确，输出结果；0代表错误，不输出结果</div><div class="line">    #name_list = [&apos;zhangsan&apos;,&apos;lisi&apos;,&apos;wangwu&apos;,&apos;zhanba&apos;]</div><div class="line">    name_list = []</div><div class="line"></div><div class="line">    t = loader.get_template(&quot;name.html&quot;)</div><div class="line">    #html = t.render(&#123;&apos;name&apos;:&apos;zhangjianwei&apos;&#125;) #直接加入值</div><div class="line">    #html = t.render(&#123;&apos;name&apos;:fun&#125;)  #引用函数</div><div class="line">    html = t.render(&#123;&apos;name&apos;:fun,&apos;today_is_weekend&apos;:today,&apos;athlete_list&apos;:name_list&#125;)</div><div class="line">    return HttpResponse(html)</div><div class="line"></div><div class="line">def display_meta(request):</div><div class="line">    values = request.META.items()</div><div class="line">    values.sort()</div><div class="line">    html= []</div><div class="line">    path = request.path</div><div class="line">    for (k,v) in values:</div><div class="line">        html.append((k,v))</div><div class="line">    return render_to_response(&apos;meta.html&apos;,&#123;&apos;meta_data&apos;:html,&apos;request_path&apos;:path&#125;)</div></pre></td></tr></table></figure>
+<h3 id="操作数据库使用到的命令"><a href="#操作数据库使用到的命令" class="headerlink" title="操作数据库使用到的命令:"></a>操作数据库使用到的命令:</h3><ul>
+<li><p><code>mysql -u root -p</code>连接用户名为root的数据库</p>
+</li>
+<li><p><code>show databases</code>显示数据库</p>
+</li>
+<li><p><code>create database Bookdb default character set utf8 collate utf8_general_ci;</code>创建一个Bookdb数据库并设置utf-8编码 </p>
+</li>
+<li><p><code>use Bookdb;</code>使用Bookdb数据库</p>
+</li>
+<li><p><code>show tables;</code>显示数据库里的存在的项目名</p>
+</li>
+<li><p><code>select * from books_publisher;</code>查询books_publisher数据库里的数据</p>
+<p>命令如图所示:<br><img src="http://img.blog.csdn.net/20161101162634343" alt="命令"></p>
+</li>
+</ul>
+<p> <img src="http://img.blog.csdn.net/20161101162701372" alt="这里写图片描述"></p>
+<hr>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/Internet-worm/" rel="next" title="网络爬虫的原理和案例">
+                <i class="fa fa-chevron-left"></i> 网络爬虫的原理和案例
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/03/Django-Model/" rel="prev" title="Django-Model操作数据库(增删改查、连表结构）">
+                Django-Model操作数据库(增删改查、连表结构） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mrzhangjwei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5340471695" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/Mrzhangjwei" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客园
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/mrzhangjwei" target="_blank" title="CSDN博客">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io/zh-cn/docs/index.html" title="hexo的知识" target="_blank">hexo的知识</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://521cjj.top/resume" title="个人简历" target="_blank">个人简历</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#自己动手写Django-app的教学网址-https-my-oschina-net-davidxp-blog-109460"><span class="nav-number">1.</span> <span class="nav-text">自己动手写Django app的教学网址:https://my.oschina.net/davidxp/blog/109460</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建mysite目录"><span class="nav-number"></span> <span class="nav-text">创建mysite目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首先需要注意的是文件目录"><span class="nav-number"></span> <span class="nav-text">首先需要注意的是文件目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意-urls-py与views-py文件是对应的-在views-py中定义函数-一定要添加到urls-py中去"><span class="nav-number">1.</span> <span class="nav-text">注意: urls.py与views.py文件是对应的,在views.py中定义函数,一定要添加到urls.py中去.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数据库使用到的命令"><span class="nav-number">2.</span> <span class="nav-text">操作数据库使用到的命令:</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

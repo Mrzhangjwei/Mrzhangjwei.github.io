@@ -1,0 +1,765 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ioc?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="一、数据库操作1、创建model表 
+ 基本结构:1234567from django.db import modelsclass userinfo(models.Model):#如果没有models.AutoField，默认会创建一个id的自增列name = models.CharField(max_length=30)email = models.EmailField()memo = mode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django-Model操作数据库(增删改查、连表结构）">
+<meta property="og:url" content="http://yoursite.com/2016/11/03/Django-Model/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、数据库操作1、创建model表 
+ 基本结构:1234567from django.db import modelsclass userinfo(models.Model):#如果没有models.AutoField，默认会创建一个id的自增列name = models.CharField(max_length=30)email = models.EmailField()memo = mode">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101211347922">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101211907144">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101213932962">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214055761">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214118042">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214300076">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214319249">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214329373">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214357046">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214530720">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214547892">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214634611">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101214822880">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215246534">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215334450">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215415941">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215535905">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215554629">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215613046">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101215707500">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220241398">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220355962">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220521728">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220557246">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220622138">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220734514">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220745854">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101220952627">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221020199">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221031871">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221055004">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221108012">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221119246">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221242590">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221253772">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221340138">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221352945">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221442696">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221512822">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221619167">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221710371">
+<meta property="og:image" content="http://img.blog.csdn.net/20161101221735514">
+<meta property="og:updated_time" content="2016-11-02T15:21:39.686Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django-Model操作数据库(增删改查、连表结构）">
+<meta name="twitter:description" content="一、数据库操作1、创建model表 
+ 基本结构:1234567from django.db import modelsclass userinfo(models.Model):#如果没有models.AutoField，默认会创建一个id的自增列name = models.CharField(max_length=30)email = models.EmailField()memo = mode">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161101211347922">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/03/Django-Model/"/>
+
+
+  <title> Django-Model操作数据库(增删改查、连表结构） | Hexo </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django-Model操作数据库(增删改查、连表结构）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T15:10:52+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、数据库操作"><a href="#一、数据库操作" class="headerlink" title="一、数据库操作"></a>一、数据库操作</h2><h3 id="1、创建model表"><a href="#1、创建model表" class="headerlink" title="1、创建model表"></a>1、创建model表</h3><p> <img src="http://img.blog.csdn.net/20161101211347922" alt="这里写图片描述"></p>
+<p> 基本结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from django.db import models</div><div class="line"></div><div class="line">class userinfo(models.Model):</div><div class="line">#如果没有models.AutoField，默认会创建一个id的自增列</div><div class="line">name = models.CharField(max_length=30)</div><div class="line">email = models.EmailField()</div><div class="line">memo = models.TextField()</div></pre></td></tr></table></figure></p>
+<p> 更多字段:<br> 1、models.AutoField 自增列= int(11)<br>如果没有的话，默认会生成一个名称为 id 的列，如果要显示的自定义一个自增列，必须将给列设置为主键 primary_key=True。<br>2、models.CharField 字符串字段<br>必须 max_length 参数<br>3、models.BooleanField 布尔类型=tinyint(1)<br>不能为空，Blank=True<br>4、models.ComaSeparatedIntegerField 用逗号分割的数字=varchar<br>继承CharField，所以必须 max_lenght 参数<br>5、models.DateField 日期类型 date<br>对于参数，auto_now =True则每次更新都会更新这个时间；auto_now_add 则只是第一次创建添加，之后的更新不再改变。<br>6、models.DateTimeField 日期类型 datetime<br>同DateField的参数<br>7、models.Decimal 十进制小数类型= decimal<br>必须指定整数位max_digits和小数位decimal_places<br>8、models.EmailField 字符串类型（正则表达式邮箱）=varchar<br>对字符串进行正则表达式<br>9、models.FloatField 浮点类型= double<br>10、models.IntegerField 整形<br>11、models.BigIntegerField 长整形<br>integer_field_ranges ={<br>‘SmallIntegerField’:(-32768,32767),<br>‘IntegerField’:(-2147483648,2147483647),<br>‘BigIntegerField’:(-9223372036854775808,9223372036854775807),<br>‘PositiveSmallIntegerField’:(0,32767),<br>‘PositiveIntegerField’:(0,2147483647),<br>}<br>12、models.IPAddressField 字符串类型（ip4正则表达式）<br>13、models.GenericIPAddressField 字符串类型（ip4和ip6是可选的）<br>参数protocol可以是：both、ipv4、ipv6<br>验证时，会根据设置报错<br>14、models.NullBooleanField 允许为空的布尔类型<br>15、models.PositiveIntegerFiel 正Integer<br>16、models.PositiveSmallIntegerField 正smallInteger<br>17、models.SlugField 减号、下划线、字母、数字<br>18、models.SmallIntegerField 数字<br>数据库中的字段有：tinyint、smallint、int、bigint<br>19、models.TextField 字符串=longtext<br>20、models.TimeField 时间 HH:MM[:ss[.uuuuuu]]<br>21、models.URLField 字符串，地址正则表达式<br>22、models.BinaryField 二进制<br>23、models.ImageField图片<br>24、models.FilePathField文件</p>
+<p> 更多参数:<br> 1、null=True<br>数据库中字段是否可以为空<br>2、blank=True<br>django的Admin中添加数据时是否可允许空值<br>3、primary_key =False<br>主键，对AutoField设置主键后，就会代替原来的自增 id 列<br>4、auto_now 和 auto_now_add<br>auto_now 自动创建—无论添加或修改，都是当前操作的时间<br>auto_now_add 自动创建—永远是创建时的时间<br>5、choices<br>GENDER_CHOICE =(<br>(u’M’, u’Male’),<br>(u’F’, u’Female’),<br>)<br>gender = models.CharField(max_length=2,choices = GENDER_CHOICE)<br>6、max_length<br>7、default 默认值<br>8、verbose_name Admin中字段的显示名称<br>9、name|db_column 数据库中的字段名称<br>10、unique=True 不允许重复<br>11、db_index =True 数据库索引<br>12、editable=True 在Admin里是否可编辑<br>13、error_messages=None 错误提示<br>14、auto_created=False 自动创建<br>15、help_text 在Admin中提示帮助信息<br>16、validators=[]<br>17、upload-to</p>
+<h3 id="2、注册APP，settings添加app"><a href="#2、注册APP，settings添加app" class="headerlink" title="2、注册APP，settings添加app"></a>2、注册APP，settings添加app</h3><h3 id="3、生成相应的表"><a href="#3、生成相应的表" class="headerlink" title="3、生成相应的表"></a>3、生成相应的表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python manage.py makemigrations</div><div class="line">python manage.py migrate</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101211907144" alt="这里写图片描述"></p>
+<h3 id="4、admin后台注册表"><a href="#4、admin后台注册表" class="headerlink" title="4、admin后台注册表"></a>4、admin后台注册表</h3><p> <img src="http://img.blog.csdn.net/20161101213932962" alt="这里写图片描述"></p>
+<p><code>python manage.py createsuperuser</code>创建用户</p>
+<p> 后台可以管理，添加数据<br><img src="http://img.blog.csdn.net/20161101214055761" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101214118042" alt="这里写图片描述"></p>
+<h2 id="二、对数据进行增删改查"><a href="#二、对数据进行增删改查" class="headerlink" title="二、对数据进行增删改查"></a>二、对数据进行增删改查</h2><h3 id="1、查"><a href="#1、查" class="headerlink" title="1、查"></a>1、查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">models.UserInfo.objects.all()</div><div class="line">models.UserInfo.objects.all().values(&apos;user&apos;)    #只取user列</div><div class="line">models.UserInfo.objects.all().values_list(&apos;id&apos;,&apos;user&apos;)    #取出id和user列，并生成一个列表</div><div class="line">models.UserInfo.objects.get(id=1)</div><div class="line">models.UserInfo.objects.get(user=&apos;yangmv&apos;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101214300076" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101214319249" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101214329373" alt="这里写图片描述"></p>
+<p> 成功获取数据:</p>
+<p><img src="http://img.blog.csdn.net/20161101214357046" alt="这里写图片描述"></p>
+<h3 id="2、增"><a href="#2、增" class="headerlink" title="2、增"></a>2、增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">models.UserInfo.objects.create(user=&apos;yangmv&apos;,pwd=&apos;123456&apos;)</div><div class="line">或者</div><div class="line">obj = models.UserInfo(user=&apos;yangmv&apos;,pwd=&apos;123456&apos;)</div><div class="line">obj.save()</div></pre></td></tr></table></figure>
+<p> 或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dic = &#123;&apos;user&apos;:&apos;yangmv&apos;,&apos;pwd&apos;:&apos;123456&apos;&#125;</div><div class="line">models.UserInfo.objects.create(**dic)</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20161101214530720" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101214547892" alt="这里写图片描述"></p>
+<h3 id="3、删"><a href="#3、删" class="headerlink" title="3、删"></a>3、删</h3><p> <code>models.UserInfo.objects.filter(user=&#39;yangmv&#39;).delete()</code></p>
+<p> <img src="http://img.blog.csdn.net/20161101214634611" alt="这里写图片描述"></p>
+<h3 id="4、改"><a href="#4、改" class="headerlink" title="4、改"></a>4、改</h3><p> <code>models.UserInfo.objects.filter(user=&#39;yangmv&#39;).update(pwd=&#39;520&#39;)</code></p>
+<p> 或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">obj = models.UserInfo.objects.get(user=&apos;yangmv&apos;)</div><div class="line">obj.pwd = &apos;520&apos;</div><div class="line">obj.save()</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101214822880" alt="这里写图片描述"></p>
+<h3 id="5、常用方法"><a href="#5、常用方法" class="headerlink" title="5、常用方法"></a>5、常用方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">#获取个数</div><div class="line">#</div><div class="line">#models.Tb1.objects.filter(name=&apos;seven&apos;).count()</div><div class="line">#大于，小于</div><div class="line">#</div><div class="line"># models.Tb1.objects.filter(id__gt=1) # 获取id大于1的值</div><div class="line"># models.Tb1.objects.filter(id__lt=10) # 获取id小于10的值</div><div class="line"># models.Tb1.objects.filter(id__lt=10, id__gt=1) # 获取id大于1 且 小于10的值</div><div class="line"># in</div><div class="line">#</div><div class="line"># models.Tb1.objects.filter(id__in=[11, 22, 33]) # 获取id等于11、22、33的数据</div><div class="line"># models.Tb1.objects.exclude(id__in=[11, 22, 33]) # not in</div><div class="line"># contains</div><div class="line">#</div><div class="line"># models.Tb1.objects.filter(name__contains=&quot;ven&quot;)</div><div class="line"># models.Tb1.objects.filter(name__icontains=&quot;ven&quot;) # icontains大小写不敏感</div><div class="line"># models.Tb1.objects.exclude(name__icontains=&quot;ven&quot;)</div><div class="line"># range</div><div class="line">#</div><div class="line"># models.Tb1.objects.filter(id__range=[1, 2]) # 范围bettwen and</div><div class="line"># 其他类似</div><div class="line">#</div><div class="line"># startswith，istartswith, endswith, iendswith,</div><div class="line"># order by</div><div class="line">#</div><div class="line"># models.Tb1.objects.filter(name=&apos;seven&apos;).order_by(&apos;id&apos;) # asc</div><div class="line"># models.Tb1.objects.filter(name=&apos;seven&apos;).order_by(&apos;-id&apos;) # desc</div><div class="line"># limit 、offset</div><div class="line">#</div><div class="line"># models.Tb1.objects.all()[10:20]</div><div class="line"># group by</div><div class="line">from django.db.models import Count, Min, Max, Sum</div><div class="line"># models.Tb1.objects.filter(c1=1).values(&apos;id&apos;).annotate(c=Count(&apos;num&apos;))</div><div class="line"># SELECT &quot;app01_tb1&quot;.&quot;id&quot;, COUNT(&quot;app01_tb1&quot;.&quot;num&quot;) AS &quot;c&quot; FROM &quot;app01_tb1&quot; WHERE &quot;app01_tb1&quot;.&quot;c1&quot; = 1 GROUP BY &quot;app01_tb1&quot;.&quot;id&quot;</div></pre></td></tr></table></figure>
+<h2 id="三、常用字段"><a href="#三、常用字段" class="headerlink" title="三、常用字段"></a>三、常用字段</h2><h4 id="models-DateTimeField-日期类型-datetime"><a href="#models-DateTimeField-日期类型-datetime" class="headerlink" title="models.DateTimeField　　日期类型 datetime"></a>models.DateTimeField　　日期类型 datetime</h4><p> 参数，<br><code>auto_now = True</code> ：则每次更新都会更新这个时间<br><code>auto_now_add</code> 则只是第一次创建添加，之后的更新不再改变。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class UserInfo(models.Model):</div><div class="line">name = models.CharField(max_length=32)</div><div class="line">ctime = models.DateTimeField(auto_now=True)</div><div class="line">uptime = models.DateTimeField(auto_now_add=True)</div><div class="line">from web import models</div><div class="line">def home(request):</div><div class="line">models.UserInfo.objects.create(name=&apos;yangmv&apos;)</div><div class="line">after = models.UserInfo.objects.all()</div><div class="line">print after[0].ctime</div><div class="line">return render(request, &apos;home/home.html&apos;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101215246534" alt="这里写图片描述"></p>
+<h3 id="1、表结构的修改"><a href="#1、表结构的修改" class="headerlink" title="1、表结构的修改"></a>1、表结构的修改</h3><p> 表结构修改后，原来表中已存在的数据，就会出现结构混乱，makemigrations更新表的时候就会出错<br>解决方法：<br>1、新增加的字段，设置允许为空。生成表的时候，之前数据新增加的字段就会为空。(null=True允许数据库中为空，blank=True允许admin后台中为空)<br>2、新增加的字段，设置一个默认值。生成表的时候，之前的数据新增加字段就会应用这个默认值</p>
+<p><img src="http://img.blog.csdn.net/20161101215334450" alt="这里写图片描述"></p>
+<p> 执行makemigrations， migrate 后。老数据会自动应用新增加的规则</p>
+<p><img src="http://img.blog.csdn.net/20161101215415941" alt="这里写图片描述"></p>
+<h3 id="models-ImageField-图片"><a href="#models-ImageField-图片" class="headerlink" title="models.ImageField                        图片"></a><code>models.ImageField</code>                        图片</h3><h3 id="models-GenericIPAddressField-IP"><a href="#models-GenericIPAddressField-IP" class="headerlink" title="models.GenericIPAddressField      IP"></a><code>models.GenericIPAddressField</code>      IP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ip = models.GenericIPAddressField(protocol=&quot;ipv4&quot;,null=True,blank=True)</div><div class="line">img = models.ImageField(null=True,blank=True,upload_to=&quot;upload&quot;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101215535905" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101215554629" alt="这里写图片描述"></p>
+<p> 数据库中保存的只是图片的路径</p>
+<p><img src="http://img.blog.csdn.net/20161101215613046" alt="这里写图片描述"></p>
+<h3 id="2、常用参数"><a href="#2、常用参数" class="headerlink" title="2、常用参数"></a>2、常用参数</h3><h4 id="选择下拉框-choices"><a href="#选择下拉框-choices" class="headerlink" title="选择下拉框 choices"></a>选择下拉框 choices</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class UserInfo(models.Model):</div><div class="line">USER_TYPE_LIST = (</div><div class="line">(1,&apos;user&apos;),</div><div class="line">(2,&apos;admin&apos;),</div><div class="line">)</div><div class="line">user_type = models.IntegerField(choices=USER_TYPE_LIST,default=1)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101215707500" alt="这里写图片描述"></p>
+<h3 id="3、链表结构"><a href="#3、链表结构" class="headerlink" title="3、链表结构"></a>3、链表结构</h3><ul>
+<li><p>一对多：<code>models.ForeignKey</code>(其他表);</p>
+<p>一对多：当一张表中创建一行数据时，有一个单选的下拉框（可以被重复选择）</p>
+</li>
+<li><p>多对多：<code>models.ManyToManyField</code>(其他表)</p>
+<p>多对多：在某表中创建一行数据是，有一个可以多选的下拉框<br>例如：创建用户信息，需要为用户指定多个爱好</p>
+</li>
+<li><p>一对一：<code>models.OneToOneField</code>(其他表)</p>
+<p>一对一：在某表中创建一行数据时，有一个单选的下拉框（下拉框中的内容被用过一次就消失了</p>
+<p><em>例如：原有含10列数据的一张表保存相关信息，经过一段时间之后，10列无法满足需求，需要为原来的表再添加5列数据</em></p>
+</li>
+</ul>
+<h4 id="一对多"><a href="#一对多" class="headerlink" title="一对多:"></a>一对多:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class Game(models.Model):</div><div class="line">gname = models.CharField(max_length=32)</div><div class="line"></div><div class="line">class Host(models.Model):</div><div class="line">hostname = models.CharField(max_length=32)</div><div class="line">game = models.ForeignKey(&apos;Game&apos;)</div></pre></td></tr></table></figure>
+<p><strong>这是Game表，里面有3个业务</strong></p>
+<p><img src="http://img.blog.csdn.net/20161101220241398" alt="这里写图片描述"></p>
+<p><strong>这是主机表，可以通过外键，对应到Game表的业务的ID</strong></p>
+<p><img src="http://img.blog.csdn.net/20161101220355962" alt="这里写图片描述"></p>
+<h4 id="多对多"><a href="#多对多" class="headerlink" title="多对多:"></a>多对多:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class UserGroup(models.Model):</div><div class="line">group_name = models.CharField(max_length=16)</div><div class="line"></div><div class="line">class User(models.Model):</div><div class="line">name = models.CharField(max_length=16)</div><div class="line">sex = models.CharField(max_length=16)</div><div class="line">email = models.EmailField(max_length=32)</div><div class="line">usergroup_user = models.ManyToManyField(&apos;UserGroup&apos;)</div></pre></td></tr></table></figure>
+<h4 id="Django-model会自动创建第3张关系表，用于对应user-id-和usergroup-id"><a href="#Django-model会自动创建第3张关系表，用于对应user-id-和usergroup-id" class="headerlink" title="Django model会自动创建第3张关系表，用于对应user id 和usergroup id"></a>Django model会自动创建第3张关系表，用于对应user id 和usergroup id</h4><p><strong>这是UserGroup表</strong></p>
+<p><img src="http://img.blog.csdn.net/20161101220521728" alt="这里写图片描述"></p>
+<p><strong>这是User表</strong></p>
+<p><img src="http://img.blog.csdn.net/20161101220557246" alt="这里写图片描述"></p>
+<p><strong>这是Django自动生成的对应关系表</strong></p>
+<p><img src="http://img.blog.csdn.net/20161101220622138" alt="这里写图片描述"></p>
+<p> user_id = 1 为 yangmv，同时属于1,2(技术部，运营部)</p>
+<h4 id="一对一：-（一对多增加了不能重复）"><a href="#一对一：-（一对多增加了不能重复）" class="headerlink" title="一对一：   （一对多增加了不能重复）"></a>一对一：   （一对多增加了不能重复）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class User2(models.Model):</div><div class="line">name = models.CharField(max_length=16)</div><div class="line">sex = models.CharField(max_length=16)</div><div class="line">email = models.EmailField(max_length=32)</div><div class="line"></div><div class="line">class Admin(models.Model):</div><div class="line">username = models.CharField(max_length=32)</div><div class="line">password = models.CharField(max_length=32)</div><div class="line">admin_user2 = models.OneToOneField(&apos;User2&apos;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101220734514" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101220745854" alt="这里写图片描述"></p>
+<p> <strong>连接Mysql</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">DATABASES =&#123;</div><div class="line">&apos;default&apos;:&#123;</div><div class="line">&apos;ENGINE&apos;:&apos;django.db.backends.mysql&apos;,</div><div class="line">&apos;NAME&apos;:&apos;dbname&apos;,</div><div class="line">&apos;USER&apos;:&apos;root&apos;,</div><div class="line">&apos;PASSWORD&apos;:&apos;xxx&apos;,</div><div class="line">&apos;HOST&apos;:&apos;&apos;,</div><div class="line">&apos;PORT&apos;:&apos;&apos;,</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="一对多操作实例"><a href="#一对多操作实例" class="headerlink" title="一对多操作实例"></a>一对多操作实例</h4><p> 首先生成2个表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">from django.db import models</div><div class="line"></div><div class="line">class Group2(models.Model):</div><div class="line">caption = models.CharField(max_length=32)</div><div class="line"></div><div class="line">class User2(models.Model):</div><div class="line">username = models.CharField(max_length=32)</div><div class="line">group2 = models.ForeignKey(&apos;Group2&apos;)</div></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20161101220952627" alt="这里写图片描述"></p>
+<p>input和select标签用forms生成</p>
+<p><img src="http://img.blog.csdn.net/20161101221020199" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101221031871" alt="这里写图片描述"></p>
+<p>先执行create_group生成3个group</p>
+<p><img src="http://img.blog.csdn.net/20161101221055004" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101221108012" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101221119246" alt="这里写图片描述"></p>
+<p>已经查询出Group数据</p>
+<p><strong>添加</strong></p>
+<p><strong>方法1,方法2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">def create_user(request):</div><div class="line">obj = Forign.UserForm(request.POST)</div><div class="line">if request.method == &apos;POST&apos;:</div><div class="line">if obj.is_valid():</div><div class="line">all_data = obj.clean()</div><div class="line">#print all_data</div><div class="line">#获取提交页面提交来的数据&#123;&apos;username&apos;: u&apos;yang1&apos;, &apos;usergroup&apos;: 1&#125;</div><div class="line">#方法1，先获取对象，添加</div><div class="line">#group_obj = models.Group2.objects.get(id=all_data[&apos;usergroup&apos;])</div><div class="line">#models.User2.objects.create(username=all_data[&apos;username&apos;],usergroup=group_obj)</div><div class="line">#方法2(推荐)</div><div class="line">models.User2.objects.create(username=all_data[&apos;username&apos;],group2_id=all_data[&apos;usergroup&apos;])</div><div class="line">#django会自动把数据库group2变为group2_id</div><div class="line">else:</div><div class="line">error = obj.errors</div><div class="line">print error[&apos;username&apos;][0]</div><div class="line">print error[&apos;usergroup&apos;][0]</div><div class="line">return render(request,&apos;forign/create_user.html&apos;,&#123;&apos;obj&apos;:obj&#125;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101221242590" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101221253772" alt="这里写图片描述"></p>
+<p><strong>方法3</strong></p>
+<p><img src="http://img.blog.csdn.net/20161101221340138" alt="这里写图片描述"></p>
+<p><img src="http://img.blog.csdn.net/20161101221352945" alt="这里写图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">def create_user(request):</div><div class="line">obj = Forign.UserForm(request.POST)</div><div class="line">if request.method == &apos;POST&apos;:</div><div class="line">if obj.is_valid():</div><div class="line">all_data = obj.clean()</div><div class="line">#print all_data</div><div class="line">#获取提交页面提交来的数据&#123;&apos;username&apos;: u&apos;yang1&apos;, &apos;usergroup&apos;: 1&#125;</div><div class="line">#方法1，先获取对象，添加</div><div class="line">#group_obj = models.Group2.objects.get(id=all_data[&apos;usergroup&apos;])</div><div class="line">#models.User2.objects.create(username=all_data[&apos;username&apos;],usergroup=group_obj)/2016/11/02/Django-Model/#more</div><div class="line">#方法2(推荐)</div><div class="line">#models.User2.objects.create(username=all_data[&apos;username&apos;],group2_id=all_data[&apos;usergroup&apos;])</div><div class="line">#django会自动把数据库group2变为group2_id</div><div class="line">#方法3(推荐)</div><div class="line">models.User2.objects.create(**all_data)</div><div class="line">print models.User2.objects.all().count()</div><div class="line">else:</div><div class="line">pass</div><div class="line"># error = obj.errors</div><div class="line"># print error[&apos;username&apos;][0]</div><div class="line"># print error[&apos;usergroup_id&apos;][0]</div><div class="line">return render(request,&apos;forign/create_user.html&apos;,&#123;&apos;obj&apos;:obj&#125;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101221442696" alt="这里写图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">create_user(request):</div><div class="line">obj = Forign.UserForm(request.POST)</div><div class="line">if request.method == &apos;POST&apos;:</div><div class="line">if obj.is_valid():</div><div class="line">all_data = obj.clean()</div><div class="line">#print all_data</div><div class="line">#获取提交页面提交来的数据&#123;&apos;username&apos;: u&apos;yang1&apos;, &apos;usergroup&apos;: 1&#125;</div><div class="line">#方法1，先获取对象，添加</div><div class="line">#group_obj = models.Group2.objects.get(id=all_data[&apos;usergroup&apos;])</div><div class="line">#models.User2.objects.create(username=all_data[&apos;username&apos;],usergroup=group_obj)</div><div class="line">#方法2(推荐)</div><div class="line">#models.User2.objects.create(username=all_data[&apos;username&apos;],group2_id=all_data[&apos;usergroup&apos;])</div><div class="line">#django会自动把数据库group2变为group2_id</div><div class="line">#方法3(推荐)</div><div class="line">models.User2.objects.create(**all_data)</div><div class="line">print models.User2.objects.all().count()</div><div class="line">else:</div><div class="line">pass</div><div class="line"># error = obj.errors</div><div class="line"># print error[&apos;username&apos;][0]</div><div class="line"># print error[&apos;usergroup_id&apos;][0]</div><div class="line">return render(request,&apos;forign/create_user.html&apos;,&#123;&apos;obj&apos;:obj&#125;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101221512822" alt="这里写图片描述"></p>
+<p><strong>查询.展示出所有的数据</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">def create_user(request):</div><div class="line">obj = Forign.UserForm(request.POST)</div><div class="line">if request.method == &apos;POST&apos;:</div><div class="line">if obj.is_valid():</div><div class="line">all_data = obj.clean()</div><div class="line">#方法3(推荐)</div><div class="line">models.User2.objects.create(**all_data)</div><div class="line">print models.User2.objects.all().count()</div><div class="line">else:</div><div class="line">pass</div><div class="line">user_list = models.User2.objects.all()</div><div class="line">return render(request,&apos;forign/create_user.html&apos;,&#123;&apos;obj&apos;:obj,&apos;user_list&apos;:user_list&#125;)</div><div class="line">&lt;table border=&quot;1&quot;&gt;</div><div class="line">&#123;% for item in user_list %&#125;</div><div class="line">&lt;tr&gt;</div><div class="line">&lt;td&gt;&#123;&#123; item.username &#125;&#125;&lt;/td&gt;</div><div class="line">&lt;td&gt;&#123;&#123; item.group2.caption &#125;&#125;&lt;/td&gt;</div><div class="line">&lt;/tr&gt;</div><div class="line">&#123;% endfor %&#125;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101221619167" alt="这里写图片描述"></p>
+<p><strong>GET方式查询</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">def create_user(request):</div><div class="line">obj = Forign.UserForm(request.POST)</div><div class="line">if request.method == &apos;POST&apos;:</div><div class="line">if obj.is_valid():</div><div class="line">all_data = obj.clean()</div><div class="line">#方法3(推荐)</div><div class="line">models.User2.objects.create(**all_data)</div><div class="line">print models.User2.objects.all().count()</div><div class="line">else:</div><div class="line">pass</div><div class="line">#查用户</div><div class="line">get_user = request.GET.get(&apos;username&apos;)</div><div class="line">user_list = models.User2.objects.filter(username=get_user)</div><div class="line">return render(request,&apos;forign/create_user.html&apos;,&#123;&apos;obj&apos;:obj,&apos;user_list&apos;:user_list&#125;)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101221710371" alt="这里写图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#查组</div><div class="line">get_val = request.GET.get(&apos;group&apos;)</div><div class="line">user_list = models.User2.objects.filter(group2__caption=get_val)</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20161101221735514" alt="这里写图片描述"></p>
+<p> 一对多跨表操作，总结<br>1、group2对应的是一个对象<br>2、创建数据 group2_id ，直接查询数据库<br>3、获取数据，通过.     group2.caption<br>4、查询数据，通过<strong>   group2</strong>caption</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/Django-MySQL/" rel="next" title="Django与数据库MySQL连接的用法">
+                <i class="fa fa-chevron-left"></i> Django与数据库MySQL连接的用法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mrzhangjwei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5340471695" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/Mrzhangjwei" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客园
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/mrzhangjwei" target="_blank" title="CSDN博客">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io/zh-cn/docs/index.html" title="hexo的知识" target="_blank">hexo的知识</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://521cjj.top/resume" title="个人简历" target="_blank">个人简历</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据库操作"><span class="nav-number">1.</span> <span class="nav-text">一、数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、创建model表"><span class="nav-number">1.1.</span> <span class="nav-text">1、创建model表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、注册APP，settings添加app"><span class="nav-number">1.2.</span> <span class="nav-text">2、注册APP，settings添加app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、生成相应的表"><span class="nav-number">1.3.</span> <span class="nav-text">3、生成相应的表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、admin后台注册表"><span class="nav-number">1.4.</span> <span class="nav-text">4、admin后台注册表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对数据进行增删改查"><span class="nav-number">2.</span> <span class="nav-text">二、对数据进行增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、查"><span class="nav-number">2.1.</span> <span class="nav-text">1、查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、增"><span class="nav-number">2.2.</span> <span class="nav-text">2、增</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、删"><span class="nav-number">2.3.</span> <span class="nav-text">3、删</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、改"><span class="nav-number">2.4.</span> <span class="nav-text">4、改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、常用方法"><span class="nav-number">2.5.</span> <span class="nav-text">5、常用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、常用字段"><span class="nav-number">3.</span> <span class="nav-text">三、常用字段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#models-DateTimeField-日期类型-datetime"><span class="nav-number">3.0.1.</span> <span class="nav-text">models.DateTimeField　　日期类型 datetime</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、表结构的修改"><span class="nav-number">3.1.</span> <span class="nav-text">1、表结构的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#models-ImageField-图片"><span class="nav-number">3.2.</span> <span class="nav-text">models.ImageField                        图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#models-GenericIPAddressField-IP"><span class="nav-number">3.3.</span> <span class="nav-text">models.GenericIPAddressField      IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、常用参数"><span class="nav-number">3.4.</span> <span class="nav-text">2、常用参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#选择下拉框-choices"><span class="nav-number">3.4.1.</span> <span class="nav-text">选择下拉框 choices</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、链表结构"><span class="nav-number">3.5.</span> <span class="nav-text">3、链表结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一对多"><span class="nav-number">3.5.1.</span> <span class="nav-text">一对多:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多对多"><span class="nav-number">3.5.2.</span> <span class="nav-text">多对多:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Django-model会自动创建第3张关系表，用于对应user-id-和usergroup-id"><span class="nav-number">3.5.3.</span> <span class="nav-text">Django model会自动创建第3张关系表，用于对应user id 和usergroup id</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一对一：-（一对多增加了不能重复）"><span class="nav-number">3.5.4.</span> <span class="nav-text">一对一：   （一对多增加了不能重复）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一对多操作实例"><span class="nav-number">3.5.5.</span> <span class="nav-text">一对多操作实例</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
