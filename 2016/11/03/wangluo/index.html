@@ -1,0 +1,704 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。物理层：提供为建立、维护和拆除物理链路所需要的机械的、电气的、功能的和规程的特性；有关的物理链路上传输非结构的位流以及故障检测指示。
+数据链路层：在网络层实体间提供数据发送和接收的功能和过程；提供数据链路的流控。
+网络层：控制分组传送系统的操作、路由选择、拥护控制、网络互连等功能，它的作用是将具体的物理传送对高层透明">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python网络编程">
+<meta property="og:url" content="http://yoursite.com/2016/11/03/wangluo/index.html">
+<meta property="og:site_name" content="Mrzhangjwei">
+<meta property="og:description" content="osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。物理层：提供为建立、维护和拆除物理链路所需要的机械的、电气的、功能的和规程的特性；有关的物理链路上传输非结构的位流以及故障检测指示。
+数据链路层：在网络层实体间提供数据发送和接收的功能和过程；提供数据链路的流控。
+网络层：控制分组传送系统的操作、路由选择、拥护控制、网络互连等功能，它的作用是将具体的物理传送对高层透明">
+<meta property="og:updated_time" content="2016-11-03T11:13:15.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python网络编程">
+<meta name="twitter:description" content="osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。物理层：提供为建立、维护和拆除物理链路所需要的机械的、电气的、功能的和规程的特性；有关的物理链路上传输非结构的位流以及故障检测指示。
+数据链路层：在网络层实体间提供数据发送和接收的功能和过程；提供数据链路的流控。
+网络层：控制分组传送系统的操作、路由选择、拥护控制、网络互连等功能，它的作用是将具体的物理传送对高层透明">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/03/wangluo/"/>
+
+
+  <title> python网络编程 | Mrzhangjwei </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mrzhangjwei</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python网络编程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-03T19:14:43+08:00" content="2016-11-03">
+              2016-11-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。"><a href="#osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。" class="headerlink" title="osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。"></a><code>osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。</code></h2><p>物理层：提供为建立、维护和拆除物理链路所需要的机械的、电气的、功能的和规程的特性；有关的物理链路上传输非结构的位流以及故障检测指示。</p>
+<p>数据链路层：在网络层实体间提供数据发送和接收的功能和过程；提供数据链路的流控。</p>
+<p>网络层：控制分组传送系统的操作、路由选择、拥护控制、网络互连等功能，它的作用是将具体的物理传送对高层透明。</p>
+<p>传输层：提供建立、维护和拆除传送连接的功能；选择网络层提供最合适的服务；在系统之间提供可靠的透明的数据传送，提供端到端的错误恢复和流量控制。</p>
+<p>会话层：提供两进程之间建立、维护和结束会话连接的功能；提供交互会话的管理功能，如三种数据流方向的控制，即一路交互、两路交替和两路同时会话模式 。</p>
+<p>表示层：代表应用进程协商数据表示；完成数据转换、格式化和文本压缩。</p>
+<p>应用层：提供OSI用户服务，例如事务处理程序、文件传送协议和网络管理等。</p>
+<hr>
+<p>协议：协议(networking protocol)，网络协议的简称，网络协议是通信计算机双方必须共同遵从的一组约定。如怎么样建立连接、怎么样互相识别等。只有遵守这个约定，计算机之间才能相互通信交流。它的三要素是：语法、语义、时序。</p>
+<hr>
+<p>TCP/IP协议：TCP/IP协议，Transmission Control Protocol/Internet Protocol的简写，中译名为传输控制协议/因特网互联协议，又名网络通讯协议，是Internet最基本的协议、Internet国际互联网络的基 础，由网络层的IP协议和传输层的TCP协议组成。TCP/IP 定义了电子设备如何连入因特网，以及数据如何在它们之间传输的标准。协议采用了4层的层级结构，每一层都呼叫它的下一层所提供的协议来完成自己的需求。<code>而实际上我们现在所说的TCP/IP 协议有时想表达的是tcp/ip协议簇</code>，这是一组常用的协议。</p>
+<h1 id="socket套接字："><a href="#socket套接字：" class="headerlink" title="socket套接字："></a>socket套接字：</h1><p>Socket套接字分为以下几种：</p>
+<p>流式套接字(SOCK_STREAM)<br><code>提供了一个面向连接、可靠的数据传输服务，数据无差错、无重复的发送且按发送顺序接收。</code>内设置流量控制，避免数据流淹没慢的接收方。数据被看作是字节流，无长度限制。</p>
+<p>数据报套接字(SOCK_DGRAM)</p>
+<p><code>提供无连接服务。数据包以独立数据包的形式被发送，不提供无差错保证，数据可能丢失或重复，顺序发送，可能乱序接收。</code></p>
+<p>原始套接字(SOCK_RAW)</p>
+<p>可以对较低层次协议如IP、ICMP直接访问。</p>
+<p>使用协议，IP，端口号来发消息</p>
+<p>字节序：小端序：低字节存储在低地址<br>       大端序：高序字节存储在低地址</p>
+<p>inet_aton(‘ip’)将IP地址转化为网络字节序地址。</p>
+<p>inet_ntoa(‘网络地址’)还原</p>
+<p>htons(端口号)将端口号转化为网络端口号</p>
+<p>ntohs()还原</p>
+<hr>
+<h2 id="使用socket-模块创建套接字"><a href="#使用socket-模块创建套接字" class="headerlink" title="使用socket()模块创建套接字"></a>使用socket()模块创建套接字</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">socket(socket_family, socket_type, protocol=<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>socket_family 可以是 AF_UNIX 或 AF_INET。socket_type 可以是 SOCK_STREAM 或 SOCK_DGRAM。这几个常量的意义可以参考之前的解释。protocol 一般不填，默认值为 0。 创建一个 TCP/IP 的套接字，你要这样调用 socket.socket()：</p>
+<p>tcpSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</p>
+<p>服务器端套接字函数：<br><code>s.bind()        绑定地址（主机，端口号对）到套接字</code><br><code>s.listen()      开始 TCP 监听</code><br><code>s.accept()      被动接受 TCP 客户的连接， （阻塞式）等待连接的到来</code></p>
+<p>客户端套接字函数：<br><code>s.connect()     主动初始化 TCP 服务器连接</code></p>
+<p>公共用途的套接字函数：<br><code>s.recv()        接收 TCP 数据</code><br><code>s.send()        发送 TCP 数据</code><br>s.sendall()     完整发送 TCP 数据<br><code>s.recvfrom()    接收 UDP 数据</code><br><code>s.sendto()      发送 UDP 数据</code><br><code>s.getpeername() 连接到当前套接字的远端的地址</code><br>s.getsockname() 当前套接字的地址<br>s.getsockopt()  返回指定套接字的参数<br>s.setsockopt()  设置指定套接字的参数<br><code>s.close()       关闭套接字</code></p>
+<h1 id="TCP（即传输控制协议）："><a href="#TCP（即传输控制协议）：" class="headerlink" title="TCP（即传输控制协议）："></a>TCP（即传输控制协议）：</h1><p><code>是一种面向连接的传输层协议，它能提供高可靠性通信(即数据无误、数据无丢失、数据无失序、数据无重复到达的通信)</code><br>适用情况：<code>适合于对传输质量要求较高，以及传输大量数据的通信。在需要可靠数据传输的场合，</code>通常使用TCP协议MSN/QQ等即时通讯软件的用户登录账户管理相关的功能通常采用TCP协议。</p>
+<hr>
+<p>TCP编写服务器端和客户端：</p>
+<p>服务器端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</div><div class="line">HOST = <span class="string">'192.168.1.247'</span></div><div class="line">PORT = <span class="number">5858</span></div><div class="line">BUFSIZE = <span class="number">1024</span></div><div class="line">ADDR = (HOST,PORT)</div><div class="line">sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">sockfd.bind(ADDR)</div><div class="line">sockfd.listen(<span class="number">5</span>)<span class="comment">#同时可以有多少个监听在等待，就像打电话似的，通话过程中再有电话会等待。超过5个后会拒绝</span></div><div class="line"><span class="keyword">print</span> <span class="string">"waiting for connection......"</span></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    connfd,addr = sockfd.accept()<span class="comment">#连接一个就在等待队列里面减少一个，返回值是两个,第一个是一个新的套接字</span></div><div class="line">    <span class="comment">#sockfd是用在本程序的一些操作，比如bind等等。connd是用来和用户进行联系，addr同时接受到了ip地址</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"connected from :"</span>,addr</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        data = connfd.recv(BUFSIZE)<span class="comment">#一次接收的最大字节数</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        connfd.send(<span class="string">"[%s] : %s"</span>%(ctime(),data))</div><div class="line">sockfd.close()</div><div class="line">connfd.close()</div></pre></td></tr></table></figure></p>
+<p>分析：定义访问的ip地址，端口号。地址是由ip地址和端口号组成的元组。定义流式套接字。绑定地址，设置监听。accept()是用来连接客户端的，会返回一个用于和客户端交换信息的新的套接字，和用户端的地址信息。一个recv对应客户端一个send，一个send对应客户端的recv。<br>客户端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> sys</div><div class="line">HOST = sys.argv[<span class="number">1</span>]</div><div class="line">PORT = int(sys.argv[<span class="number">2</span>])</div><div class="line">BUFSIZE = <span class="number">1024</span></div><div class="line">ADDR = (HOST,PORT)</div><div class="line">sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">sockfd.connect(ADDR)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    data = raw_input(<span class="string">'&gt;'</span>)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    sockfd.send(data)</div><div class="line">    data = sockfd.recv(BUFSIZE)</div><div class="line">    <span class="keyword">print</span> data</div><div class="line">sockfd.close()</div></pre></td></tr></table></figure></p>
+<p>分析：动态的从终端输入ip和端口号，向服务器端传值send，接收服务器端值recv。</p>
+<hr>
+<h1 id="UDP（User-Datagram-Protocol）用户数据报协议"><a href="#UDP（User-Datagram-Protocol）用户数据报协议" class="headerlink" title="UDP（User Datagram Protocol）用户数据报协议:"></a>UDP（User Datagram Protocol）用户数据报协议:</h1><p><code>是不可靠的无连接的协议。在数据发送前，因为不需要进行连接，所以可以进行高效率的数据传输。</code><br>适用情况：发送小尺寸数据（如对DNS服务器进行IP地址查询时）在接收到数据，给出应答较困难的网络中使用UDP。（如：无线网络）适合于广播/ 组播式通信中。MSN/QQ/Skype等即时通讯软件的点对点文本通讯以及音视频通讯通常采用UDP协议。流媒体、VOD、VoIP、IPTV等网络多 媒体服务中通常采用UDP方式进行实时数据传输。</p>
+<p>UDP编写服务器端和客户端：</p>
+<p>服务器端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</div><div class="line">HOST = <span class="string">'192.168.1.247'</span></div><div class="line">PORT = <span class="number">5858</span></div><div class="line">BUFSIZE = <span class="number">1024</span></div><div class="line">ADDR = (HOST,PORT)</div><div class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</div><div class="line">sockfd.bind(ADDR)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"waiting for message"</span></div><div class="line">    data,addr = sockfd.recvfrom(BUFSIZE)</div><div class="line">    <span class="keyword">print</span> <span class="string">"client addr : "</span>,addr</div><div class="line">    <span class="keyword">print</span> <span class="string">"client data : "</span>,data</div><div class="line">    sockfd.sendto(<span class="string">'[%s : %s]'</span>%(ctime(),data),addr)</div><div class="line"></div><div class="line">sockfd.close()</div></pre></td></tr></table></figure></p>
+<p>分析：到绑定地址同理。UDP不需要accept直接就可以使用recvfrom和sendto进行信息传递。recvfrom返回值是数据和地址信息，sendto参数也是数据和地址信息。</p>
+<p>客户端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> sys</div><div class="line">HOST = sys.argv[<span class="number">1</span>]</div><div class="line">PORT = int(sys.argv[<span class="number">2</span>])</div><div class="line">BUFSIZE = <span class="number">1024</span></div><div class="line">ADDR = (HOST,PORT)</div><div class="line">sockfd = socket(AF_INET,SOCK_DGRAM)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    data = raw_input(<span class="string">'&gt;'</span>)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    sockfd.sendto(data,ADDR)</div><div class="line">    data,ADDR = sockfd.recvfrom(BUFSIZE)</div><div class="line">    <span class="keyword">print</span> data</div><div class="line">sockfd.close()</div></pre></td></tr></table></figure></p>
+<p>分析：动态从终端接收ip和端口号。用sendto向服务器端传值，用recvfrom接收服务器端的值（注：从终端输入的的都是字符串，所以端口号要强转）</p>
+<hr>
+<h1 id="使用ftp实现文件服务器："><a href="#使用ftp实现文件服务器：" class="headerlink" title="使用ftp实现文件服务器："></a>使用ftp实现文件服务器：</h1><p>服务器端代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">server</span>:</span></div><div class="line">    BUFSIZE = <span class="number">1024</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,sockfd)</span>:</span></div><div class="line">        self.sockfd = sockfd</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_list</span><span class="params">(self)</span>:</span></div><div class="line">        filelist = os.listdir(<span class="string">'.'</span>)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> filelist:</div><div class="line">            self.sockfd.send(i)</div><div class="line">            sleep(<span class="number">0.1</span>)</div><div class="line">        <span class="keyword">print</span> <span class="string">"list ok!"</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(self,filename)</span>:</span></div><div class="line">        f = open(filename,<span class="string">'r'</span>)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            data = f.readline()</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            self.sockfd.send(data)</div><div class="line">            sleep(<span class="number">0.1</span>)</div><div class="line">        f.close()</div><div class="line">        <span class="keyword">print</span> <span class="string">"download ok!"</span></div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upload</span><span class="params">(self,filename)</span>:</span></div><div class="line">        f = open(filename,<span class="string">'w'</span>)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            data = self.sockfd.recv(self.BUFSIZE)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            f.write(data)</div><div class="line">        f.close()</div><div class="line">        <span class="keyword">print</span> <span class="string">"upload ok!"</span></div><div class="line">        <span class="keyword">return</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) &lt; <span class="number">3</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"input valid arg"</span></div><div class="line">        sys.exit(<span class="number">0</span>)</div><div class="line">    HOST = sys.argv[<span class="number">1</span>]</div><div class="line">    PORT = int(sys.argv[<span class="number">2</span>])</div><div class="line">    BUFSIZE = <span class="number">1024</span></div><div class="line">    ADDR = (HOST,PORT)</div><div class="line">    sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">    sockfd.bind(ADDR)</div><div class="line">    sockfd.listen(<span class="number">5</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        connfd,addr = sockfd.accept()</div><div class="line">        <span class="keyword">print</span> <span class="string">"connected from :"</span>,addr</div><div class="line">        data = connfd.recv(BUFSIZE)</div><div class="line">        ftp = server(connfd)</div><div class="line">        <span class="keyword">print</span> <span class="string">"----"</span>,data</div><div class="line">        <span class="keyword">if</span> data[<span class="number">0</span>] == <span class="string">'L'</span>:</div><div class="line">            ftp.do_list()</div><div class="line">        <span class="keyword">if</span> data[<span class="number">0</span>] == <span class="string">'D'</span>:</div><div class="line">            ftp.download(data[<span class="number">2</span>:])</div><div class="line">        <span class="keyword">if</span> data[<span class="number">0</span>] == <span class="string">'U'</span>:</div><div class="line">            ftp.upload(data[<span class="number">2</span>:])</div><div class="line">        connfd.close()</div><div class="line">    sys.exit(<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>客户端代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> *</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">client</span>:</span></div><div class="line">    BUFSIZE = <span class="number">1024</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,serveraddr)</span>:</span></div><div class="line">        self.serveraddr = serveraddr</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_list</span><span class="params">(self)</span>:</span></div><div class="line">        data = <span class="string">'L'</span></div><div class="line">        sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">        sockfd.connect(self.serveraddr)</div><div class="line">        sockfd.send(data)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            data = sockfd.recv(self.BUFSIZE)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="keyword">print</span> <span class="string">"%s"</span>%data</div><div class="line">        <span class="keyword">print</span> <span class="string">"list ok!"</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(self,filename)</span>:</span></div><div class="line">        f = open(filename,<span class="string">'w'</span>)</div><div class="line">        data = <span class="string">'D '</span>+filename</div><div class="line">        sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">        sockfd.connect(self.serveraddr)</div><div class="line">        sockfd.send(data)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            data = sockfd.recv(self.BUFSIZE)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            f.write(data)</div><div class="line">        <span class="keyword">print</span> <span class="string">"download ok!"</span></div><div class="line">        sockfd.close()</div><div class="line">        f.close()</div><div class="line">        <span class="keyword">return</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">upload</span><span class="params">(self,filename)</span>:</span></div><div class="line">        f = open(filename,<span class="string">'r'</span>)</div><div class="line">        <span class="keyword">print</span> filename</div><div class="line">        data1 = <span class="string">'U '</span>+filename</div><div class="line">        sockfd = socket(AF_INET,SOCK_STREAM,<span class="number">0</span>)</div><div class="line">        sockfd.connect(self.serveraddr)</div><div class="line">        sockfd.send(data1)</div><div class="line">	       sleep(<span class="number">0.1</span>)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            data = f.readline()</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            sockfd.send(data)</div><div class="line">        <span class="keyword">print</span> <span class="string">"uplaod ok!"</span>,filename</div><div class="line">        sockfd.close()</div><div class="line">        f.close()</div><div class="line">        <span class="keyword">return</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) &lt; <span class="number">3</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"error"</span></div><div class="line">        sys.exit(<span class="number">0</span>)</div><div class="line">    HOST = sys.argv[<span class="number">1</span>]</div><div class="line">    PORT = int(sys.argv[<span class="number">2</span>])</div><div class="line">    ADDR = (HOST,PORT)</div><div class="line">    ftp = client(ADDR)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"---list---"</span></div><div class="line">        <span class="keyword">print</span> <span class="string">"---download---"</span></div><div class="line">        <span class="keyword">print</span> <span class="string">"---upload---"</span></div><div class="line">        <span class="keyword">print</span> <span class="string">"---quit---"</span></div><div class="line">        data = raw_input(<span class="string">'&gt;'</span>)</div><div class="line">        <span class="keyword">if</span> data[<span class="number">0</span>] == <span class="string">"l"</span>:</div><div class="line">            ftp.do_list()</div><div class="line">        <span class="keyword">elif</span> data[<span class="number">0</span>] == <span class="string">"d"</span>:</div><div class="line">            ftp.download(data[<span class="number">9</span>:])</div><div class="line">        <span class="keyword">elif</span> data[<span class="number">0</span>] == <span class="string">"u"</span>:</div><div class="line">            ftp.upload(data[<span class="number">7</span>:])</div><div class="line">        <span class="keyword">elif</span> data[<span class="number">0</span>] == <span class="string">"q"</span>:</div><div class="line">            sys.exit(<span class="number">0</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">continue</span></div><div class="line">    sys.exit(<span class="number">0</span>)</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    main()</div></pre></td></tr></table></figure></p>
+<p>分析：主要完成文件显示，文件上传，文件下载，具体实现看代码。</p>
+<h1 id="IO-模型"><a href="#IO-模型" class="headerlink" title="IO 模型"></a>IO 模型</h1><p>在UNIX/Linux下主要的I/O 模型有：阻塞I/O,非阻塞I/O,异步I/O等。下面一一介绍下每种IO模型的特点。</p>
+<h1 id="阻塞IO"><a href="#阻塞IO" class="headerlink" title="阻塞IO"></a>阻塞IO</h1><p>在linux中，默认情况下所有的socket都是blocking。当用户进程调用了recv，kernel就开始了IO的第一个阶段：准备数据。对于网络IO来说，很多时候数据在一开始还没有到达（比如，还没有收到一个完整的数据包），这个时候kernel就要等待足够的数据到来。而在用户进程这边，整个进程会被阻塞。当kernel一直等到数据准备好了，它就会将数据从kernel中拷贝到用户内存，然后kernel返回结果，用户进程才解除block的状态，重新运行起来。所以，blocking IO的特点就是在IO执行的两个阶段（等待数据和拷贝数据两个阶段）都被阻塞了。几乎所有的程序员第一次接触到的网络编程都是从listen()、 send()、recv()等接口开始的，这些接口都是阻塞型的。使用这些接口可以很方便的构建服务器/客户机的模型。因此阻塞IO是最常用、最简单、效率最低的。</p>
+<h1 id="非阻塞IO"><a href="#非阻塞IO" class="headerlink" title="非阻塞IO"></a>非阻塞IO</h1><p>Linux下，可以通过设置socket使其变为non-blocking。当对一个non-blocking socket执行读操作时。当用户进程发出read操作时，如果kernel中的数据还没有准备好，那么它并不会block用户进程，而是立刻返回一个 error。从用户进程角度讲 ，它发起一个read操作后，并不需要等待，而是马上就得到了一个结果。用户进程判断结果是一个error时，它就知道数据还没有准备好，于是它可以再次 发送read操作。一旦kernel中的数据准备好了，并且又再次收到了用户进程的system call，那么它马上就将数据拷贝到了用户内存，然后返回。所以，在非阻塞式IO中，用户进程其实是需要不断的主动询问kernel数据准备好了没有。非 阻塞的接口相比于阻塞型接口的显著差异在于，在被调用之后立即返回。使用一定的函数可以将某句柄fd设为非阻塞状态。非阻塞IO可防止进程阻塞在I/O操 作上，但是需要轮询耗费资源较多<br>服务器端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">start</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">        sockfd.bind((<span class="string">'192.168.1.247'</span>,<span class="number">5858</span>))</div><div class="line">        sockfd.listen(<span class="number">5</span>)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="keyword">print</span> <span class="string">"error"</span></div><div class="line">        exit(<span class="number">0</span>)</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        sockfd.setblocking(<span class="number">1</span>)</div><div class="line">        connfd,addr = sockfd.accept()</div><div class="line">        buf = connfd.recv(<span class="number">1024</span>)</div><div class="line">        connfd.close()</div><div class="line">        <span class="keyword">print</span> <span class="string">"-----"</span></div><div class="line"><span class="keyword">if</span> __name__ ==<span class="string">"__main__"</span>:</div><div class="line">    start()</div></pre></td></tr></table></figure></p>
+<p>客户端：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">client</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        sockfd = socket(AF_INET,SOCK_STREAM)</div><div class="line">        sockfd.connect((<span class="string">'192.168.1.247'</span>,<span class="number">5858</span>))</div><div class="line">        <span class="keyword">print</span> <span class="string">"输入字符"</span></div><div class="line">        buf = raw_input()</div><div class="line">        <span class="keyword">if</span> buf == <span class="string">''</span>:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        sockfd.send(buf)</div><div class="line">        <span class="keyword">print</span> sockfd.recv(<span class="number">1024</span>)</div><div class="line">        sockfd.close()</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    client()</div></pre></td></tr></table></figure></p>
+<h1 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h1><p>实际上同步与异步是针对应用程序与内核的交互而言的。同步过程中进程触发IO操作并等待或者轮询的去查看IO操作是否完成。异步过程中进程触发IO 操作以后，直接返回，做自己的事情，IO交给内核来处理，完成后内核通知进程IO完成。Python的异步I/O支持是相当的好。有一堆库可以做这个工 作。在这其中select/poll是较为常见的异步IO实现模式。虽然有些说法称这种IO多路复用实际也是轮询而不是真正的异步，但是这并不影响我们现 阶段的理解和学习。</p>
+<h2 id="select实现异步IO"><a href="#select实现异步IO" class="headerlink" title="select实现异步IO"></a>select实现异步IO</h2><p>Python中的select模块以列表形式接受四个参数，原型为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select(rlist,wlist,xlist[,timeout])</div></pre></td></tr></table></figure></p>
+<p>其中rlist是等待读取的对象，wlist是等待写入的对象，xlist是等待异常的对象，最后一个是可选对象，指定等待的时间。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> select <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</div><div class="line">HOST = <span class="string">'192.168.1.247'</span></div><div class="line">PORT = <span class="number">5858</span></div><div class="line">BUFSIZE = <span class="number">1024</span></div><div class="line">ADDR = (HOST,PORT)</div><div class="line">sockfd = socket(AF_INET,SOCK_STREAM,<span class="number">0</span>)</div><div class="line">sockfd.bind(ADDR)</div><div class="line">sockfd.listen(<span class="number">5</span>)</div><div class="line">inputs = [sockfd]</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    rs,ws,es = select(inputs,[],[])</div><div class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> rs:</div><div class="line">        <span class="keyword">if</span> r <span class="keyword">is</span> sockfd:</div><div class="line">            connfd,addr = sockfd.accept()</div><div class="line">            <span class="keyword">print</span> <span class="string">"connect from :"</span>,addr</div><div class="line">            inputs.append(connfd)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">try</span>:</div><div class="line">                data = r.recv(BUFSIZE)</div><div class="line">                disconnect = <span class="keyword">not</span> data</div><div class="line">            <span class="keyword">except</span> sockt.error:</div><div class="line">                disconnect = <span class="keyword">True</span></div><div class="line">            <span class="keyword">if</span> disconnect:</div><div class="line">                <span class="keyword">print</span> r.getpeername(),<span class="string">'disconnected'</span></div><div class="line">                inputs.remove(r)</div><div class="line">                r.close()</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                r.send(<span class="string">'[%s] :%s'</span>%(ctime(),data))</div><div class="line">sockfd.close()</div></pre></td></tr></table></figure></p>
+<p>分析：select函数返回一个读列表，里面放的都是准备好的套接字。循环遍历rs。</p>
+<hr>
+<h2 id="poll实现异步IO"><a href="#poll实现异步IO" class="headerlink" title="poll实现异步IO"></a>poll实现异步IO</h2><p>poll实现服务器时，需要用到register()和unregister()方法，作用是加入和移除对象，poll()的返回值包括了文件描述 符和事件，polling的事件常量有POLLIN，POLLPRI，POLLPOUT，POLLERR，POLLHUP，POLLVAL，分别表示读取 数据，读取紧急数据，文件描述符已经准备好，文件描述符出错，连接丢失，无效请求。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> select <span class="keyword">import</span> *</div><div class="line">s = socket()</div><div class="line">host = <span class="string">'192.168.1.247'</span></div><div class="line">port = <span class="number">5858</span></div><div class="line">s.bind((host,port))</div><div class="line">fdmap = &#123;s.fileno():s&#125;</div><div class="line">s.listen(<span class="number">5</span>)</div><div class="line">p = poll()</div><div class="line">p.register(s)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    events = p.poll()</div><div class="line">    <span class="keyword">for</span> fd,event <span class="keyword">in</span> events:</div><div class="line">        <span class="keyword">if</span> fd == s.fileno():</div><div class="line">            c,addr = s.accept()</div><div class="line">            <span class="keyword">print</span> <span class="string">"got connection fron "</span>,addr</div><div class="line">            p.register(c)</div><div class="line">            fdmap[c.fileno()] = c</div><div class="line">        <span class="keyword">elif</span> event &amp; POLLIN:</div><div class="line">            data = fdmap[fd].recv(<span class="number">1024</span>)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">print</span> fdmap[fd].getpeername(),<span class="string">'disconnected'</span></div><div class="line">                p.unregister(fd)</div><div class="line">                <span class="keyword">del</span> fdmap[fd]</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">print</span> data</div><div class="line">                fdmap[fd].send(<span class="string">'receive message'</span>)</div><div class="line">s.close()</div></pre></td></tr></table></figure></p>
+<p>分析：先将套接字s注册，生成一个poll函数对象，调用poll函数返回一个文件描述符和事件。fileno函数是将套接字转换为文件描述符。event&amp;POLLIN是按位相与，匹配上为True。</p>
+<hr>
+<h1 id="循环服务器"><a href="#循环服务器" class="headerlink" title="循环服务器"></a>循环服务器</h1><p>循环服务器采用UDP模式较多，TCP很少有采用循环服务器的。大体流程是：</p>
+<p>服务器端运行后等待客户端的连接请求。</p>
+<p>服务器接受一个客户端的连接后开始处理，完成了客户的所有请求后断开连接。</p>
+<p>循环服务器一次只能处理一个客户端的请求。</p>
+<p>只有在当前客户的所有请求都完成后，服务器才能处理下一个客户的连接/服务请求。</p>
+<p>如果某个客户端一直占用服务器资源，那么其它的客户端都不能被处理。</p>
+<h1 id="并发服务器"><a href="#并发服务器" class="headerlink" title="并发服务器"></a>并发服务器</h1><p>为了弥补循环服务器的缺陷，人们又设计了并发服务器的模型。并发服务器的设计思想是服务器接受客户端的连接请求后采用多进程或者多线程的方法来为客 户端服务 TCP并发服务器可以避免TCP循环服务器中客户端独占服务器的情况。在并发服务器中大多采用TCP的模式。另外还有一种方式就是采取异步IO的方式实现 并发服务器。这就是我们上面讲到的select/poll的方法。</p>
+<h1 id="多进程实现并发服务器："><a href="#多进程实现并发服务器：" class="headerlink" title="多进程实现并发服务器："></a>多进程实现并发服务器：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">import</span> socket,traceback,os,sys</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">reap</span><span class="params">()</span>:</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            result = os.waitpid(<span class="number">-1</span>,os.WHOHANG)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> result[<span class="number">0</span>]:<span class="keyword">break</span></div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        <span class="keyword">print</span> <span class="string">'reaped child process %d'</span>%result[<span class="number">0</span>]</div><div class="line">host = <span class="string">''</span></div><div class="line">port = <span class="number">5858</span></div><div class="line">s = socket.socket()</div><div class="line">s.bind((host,port))</div><div class="line">s.listen(<span class="number">5</span>)</div><div class="line"><span class="keyword">print</span> <span class="string">'parent at %d listen for connections'</span>%os.getpid()</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        c,addr = s.accept()</div><div class="line">    <span class="keyword">except</span> KeyboardInterrupt:</div><div class="line">        <span class="keyword">raise</span></div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        traceback.print_exc()</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    reap()</div><div class="line">    pid = os.fork()</div><div class="line">    <span class="keyword">if</span> pid:</div><div class="line">        c.close()</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        s.close()</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">"child from %s being hanled PID %d"</span>%(c.getpeername(),os.getpid())</div><div class="line">            <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">                data = c.recv(<span class="number">1024</span>)</div><div class="line">                <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                    <span class="keyword">break</span></div><div class="line">                <span class="keyword">print</span> data</div><div class="line">                c.send(<span class="string">'recv your message'</span>)</div><div class="line">        <span class="keyword">except</span> (KeyboardInterrupt,SystemExit):</div><div class="line">            <span class="keyword">raise</span></div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            traceback.print_exc()</div><div class="line">        c.close()</div><div class="line">        sys.exit(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+<p>分析：用fork函数创建进程，父进程关闭客户端套接字。子进程关闭父进程套接字。每有一个客户端接入就创建一个子进程与之通信，父进程就是用来创建子进程的。</p>
+<hr>
+<h1 id="多线程实现并发服务器："><a href="#多线程实现并发服务器：" class="headerlink" title="多线程实现并发服务器："></a>多线程实现并发服务器：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">import</span> socket,os,sys,traceback</div><div class="line"><span class="keyword">from</span> threading <span class="keyword">import</span> *</div><div class="line">host = <span class="string">'192.168.1.247'</span></div><div class="line">port = <span class="number">5858</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">handler</span><span class="params">(clientsock)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'new child'</span></div><div class="line">    <span class="keyword">print</span> <span class="string">'go connection from'</span>,clientsock.getpeername()</div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        data = clientsock.recv(<span class="number">1024</span>)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        clientsock.send(<span class="string">'receive your message'</span>)</div><div class="line">    clientsock.close()</div><div class="line">s = socket.socket()</div><div class="line">s.bind((host,port))</div><div class="line">s.listen(<span class="number">5</span>)</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        clientsock,clientaddr = s.accept()</div><div class="line">    <span class="keyword">except</span> KeyboardInterrupt:</div><div class="line">        <span class="keyword">raise</span></div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        traceback.print_exc()</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    t = Thread(target = handler,args = (clientsock,))</div><div class="line">    t.setDaemon(<span class="number">1</span>)</div><div class="line">    t.start()</div><div class="line">s.close()</div></pre></td></tr></table></figure>
+<p>分析：每有一个客户端接入创建一个线程，并将客户端套接字传入子线程中，用线程和客户端进行通信。</p>
+<hr>
+<h1 id="集成模块："><a href="#集成模块：" class="headerlink" title="集成模块："></a>集成模块：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#! /usr/bin/python</span></div><div class="line"><span class="keyword">from</span> SocketServer <span class="keyword">import</span> *</div><div class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Server</span><span class="params">(ForkingMixIn,TCPServer)</span>:</span></div><div class="line">    <span class="keyword">pass</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Handler</span><span class="params">(StreamRequestHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle</span><span class="params">(self)</span>:</span></div><div class="line">        addr = self.request.getpeername()</div><div class="line">        <span class="keyword">print</span> <span class="string">'got connection from'</span>,addr</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            data = self.request.recv(<span class="number">1024</span>)</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> data:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            self.request.send(<span class="string">'[%s] :%s'</span>%(ctime(),data))</div><div class="line">server = Server((<span class="string">'192.168.1.247'</span>,<span class="number">5858</span>),Handler)</div><div class="line">server.serve_forever()</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/Django-Model/" rel="next" title="Django-Model操作数据库(增删改查、连表结构）">
+                <i class="fa fa-chevron-left"></i> Django-Model操作数据库(增删改查、连表结构）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ai.jpg"
+               alt="张健伟" />
+          <p class="site-author-name" itemprop="name">张健伟</p>
+          <p class="site-description motion-element" itemprop="description">梦虽虚幻,却是自己的梦想;位虽低微,确实自己的岗位;屋虽简陋,却是自己的家;志虽渺小,却是自己的追求!!!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mrzhangjwei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5340471695" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/Mrzhangjwei" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客园
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/mrzhangjwei" target="_blank" title="CSDN博客">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://michaelxiang.me" title="hexo改变主题" target="_blank">hexo改变主题</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://521cjj.top/resume" title="个人简历" target="_blank">个人简历</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。"><span class="nav-number">1.</span> <span class="nav-text">osi模型：从上到下分别是应用层，表示层，会话层，传输层，网络层，链路层，物理层。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#socket套接字："><span class="nav-number"></span> <span class="nav-text">socket套接字：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用socket-模块创建套接字"><span class="nav-number">1.</span> <span class="nav-text">使用socket()模块创建套接字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP（即传输控制协议）："><span class="nav-number"></span> <span class="nav-text">TCP（即传输控制协议）：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDP（User-Datagram-Protocol）用户数据报协议"><span class="nav-number"></span> <span class="nav-text">UDP（User Datagram Protocol）用户数据报协议:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用ftp实现文件服务器："><span class="nav-number"></span> <span class="nav-text">使用ftp实现文件服务器：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IO-模型"><span class="nav-number"></span> <span class="nav-text">IO 模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#阻塞IO"><span class="nav-number"></span> <span class="nav-text">阻塞IO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非阻塞IO"><span class="nav-number"></span> <span class="nav-text">非阻塞IO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异步IO"><span class="nav-number"></span> <span class="nav-text">异步IO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#select实现异步IO"><span class="nav-number">1.</span> <span class="nav-text">select实现异步IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poll实现异步IO"><span class="nav-number">2.</span> <span class="nav-text">poll实现异步IO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环服务器"><span class="nav-number"></span> <span class="nav-text">循环服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发服务器"><span class="nav-number"></span> <span class="nav-text">并发服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多进程实现并发服务器："><span class="nav-number"></span> <span class="nav-text">多进程实现并发服务器：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程实现并发服务器："><span class="nav-number"></span> <span class="nav-text">多线程实现并发服务器：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集成模块："><span class="nav-number"></span> <span class="nav-text">集成模块：</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张健伟</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/affix.js"></script>
+<script type="text/javascript" src="/js/src/bookstrap.js"></script>
+
+
+</body>
+
+</html>
