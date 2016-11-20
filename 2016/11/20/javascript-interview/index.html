@@ -1,0 +1,771 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.jpg?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="1.介绍JavaScript的基本数据类型? JavaScript的基本类型是: Undefined、Null、Boolean、Number、String
+ 详细讲解: http://www.jianshu.com/p/4841fcc6b4e7
+2.JavaScript原型,原型链?有什么特点? 每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mrzhangjwei">
+<meta property="og:url" content="http://yoursite.com/2016/11/20/javascript-interview/index.html">
+<meta property="og:site_name" content="Mrzhangjwei">
+<meta property="og:description" content="1.介绍JavaScript的基本数据类型? JavaScript的基本类型是: Undefined、Null、Boolean、Number、String
+ 详细讲解: http://www.jianshu.com/p/4841fcc6b4e7
+2.JavaScript原型,原型链?有什么特点? 每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这">
+<meta property="og:updated_time" content="2016-11-20T13:00:59.405Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mrzhangjwei">
+<meta name="twitter:description" content="1.介绍JavaScript的基本数据类型? JavaScript的基本类型是: Undefined、Null、Boolean、Number、String
+ 详细讲解: http://www.jianshu.com/p/4841fcc6b4e7
+2.JavaScript原型,原型链?有什么特点? 每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/20/javascript-interview/"/>
+
+
+  <title>  | Mrzhangjwei </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mrzhangjwei</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-20T21:00:59+08:00" content="2016-11-20">
+              2016-11-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1-介绍JavaScript的基本数据类型"><a href="#1-介绍JavaScript的基本数据类型" class="headerlink" title="1.介绍JavaScript的基本数据类型?"></a>1.介绍JavaScript的基本数据类型?</h3><p> JavaScript的基本类型是: Undefined、Null、Boolean、Number、String</p>
+<p> 详细讲解: <a href="http://www.jianshu.com/p/4841fcc6b4e7" target="_blank" rel="external">http://www.jianshu.com/p/4841fcc6b4e7</a></p>
+<h3 id="2-JavaScript原型-原型链-有什么特点"><a href="#2-JavaScript原型-原型链-有什么特点" class="headerlink" title="2.JavaScript原型,原型链?有什么特点?"></a>2.JavaScript原型,原型链?有什么特点?</h3><p> 每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，<br>于是就这样一直找下去，也就是我们平时所说的原型链的概念。<br>关系：<code>instance.constructor.prototype = instance.__proto__</code><br>//<br>特点：JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本，当我们修改原型时，与之相关的对象也会继承这一改变。<br>//<br>当我们需要一个属性时，JavaScript引擎会先看当前对象中是否有这个属性，如果没有的话，就会查找它的prototype对象是否有这个属性，如此递推下去，一致检索到Object内建对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Func()&#123;&#125;</div><div class="line">Func.prototype.name = &quot;Xiaosong&quot;;</div><div class="line">Func.prototype.getInfo = function() &#123;</div><div class="line">  return this.name;</div><div class="line">&#125;</div><div class="line">var person = new Func();</div><div class="line">console.log(person.getInfo());</div><div class="line">//&quot;Xiaosong&quot;</div><div class="line">console.log(Func.prototype);</div><div class="line">//Func &#123; name = &quot;Xiaosong&quot;, getInfo = function() &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-JavaScript如何实现继承"><a href="#3-JavaScript如何实现继承" class="headerlink" title="3.JavaScript如何实现继承?"></a>3.JavaScript如何实现继承?</h3><ul>
+<li>(1)构造继承</li>
+<li>(2)原型继承</li>
+<li>(3)实例继承</li>
+<li>(4)拷贝继承<br>//<br>原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function Parent() &#123;</div><div class="line">  this.name = &apos;song&apos;;</div><div class="line">&#125;</div><div class="line">function Child() &#123;</div><div class="line">  this.age = 28;</div><div class="line">&#125;</div><div class="line">Child.prototype = new Parent(); //通过原型,继承了Parent</div><div class="line">//</div><div class="line">var demo = new Child()l;</div><div class="line">alert(demo.age);</div><div class="line">alert(demo.name); //得到被继承的属性</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-JavaScript创建对象的几种方式"><a href="#4-JavaScript创建对象的几种方式" class="headerlink" title="4.JavaScript创建对象的几种方式?"></a>4.JavaScript创建对象的几种方式?</h3><p> javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。</p>
+<ul>
+<li>(1)对象字面量的方式<br><code>person={firstname:&quot;Mark&quot;,lastname:&quot;Yun&quot;,age:25,eyecolor:&quot;black&quot;};</code></li>
+<li><p>(2)用function来模拟无参的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function Person()&#123;&#125;</div><div class="line">var person = new Person(); //定义一个function，如果使用new&quot;实例化&quot;,该function可以看作是一个Class</div><div class="line">person.name = &quot;Xiaosong&quot;;</div><div class="line">person.age = &quot;23&quot;;</div><div class="line">person.work = function() &#123;</div><div class="line">  alert(&quot;Hello &quot; + person.name);</div><div class="line">&#125;</div><div class="line">person.work();</div></pre></td></tr></table></figure>
+</li>
+<li><p>(3)用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person(name,age,hobby) &#123;</div><div class="line">  this.name = name; //this作用域：当前对象</div><div class="line">  this.age = age;</div><div class="line">  this.work = work;</div><div class="line">  this.info = function() &#123;</div><div class="line">      alert(&quot;我叫&quot; + this.name + &quot;，今年&quot; + this.age + &quot;岁，是个&quot; + this.work);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">var Xiaosong = new Person(&quot;WooKong&quot;,23,&quot;程序猿&quot;); //实例化、创建对象</div><div class="line">Xiaosong.info(); //调用info()方法</div></pre></td></tr></table></figure>
+</li>
+<li><p>(4)用工厂方式来创建（内置对象）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var jsCreater = new Object();</div><div class="line">jsCreater.name = &quot;Brendan Eich&quot;; //JavaScript的发明者</div><div class="line">jsCreater.work = &quot;JavaScript&quot;;</div><div class="line">jsCreater.info = function() &#123;</div><div class="line">  alert(&quot;我是&quot;+this.work+&quot;的发明者&quot;+this.name);</div><div class="line">&#125;</div><div class="line">jsCreater.info();</div></pre></td></tr></table></figure>
+</li>
+<li><p>(5)用原型方式来创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function Standard()&#123;&#125;</div><div class="line">Standard.prototype.name = &quot;ECMAScript&quot;;</div><div class="line">Standard.prototype.event = function() &#123;</div><div class="line">  alert(this.name+&quot;是脚本语言标准规范&quot;);</div><div class="line">&#125;</div><div class="line">var jiaoben = new Standard();</div><div class="line">jiaoben.event();</div></pre></td></tr></table></figure>
+</li>
+<li><p>(6)用混合方式来创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function iPhone(name,event) &#123;</div><div class="line">  this.name = name;</div><div class="line">  this.event = event;</div><div class="line">&#125;</div><div class="line">iPhone.prototype.sell = function() &#123;</div><div class="line">  alert(&quot;我是&quot;+this.name+&quot;，我是iPhone5s的&quot;+this.event+&quot;~ haha!&quot;);</div><div class="line">&#125;</div><div class="line">var SE = new iPhone(&quot;iPhone SE&quot;,&quot;官方翻新机&quot;);</div><div class="line">SE.sell();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###　5.JavaScript作用域链?</p>
+<p> JavaScript中所有的量都是存在于某一个作用域中的<br> 除了全局作用域, 每一个作用域都是存在於某个作用域中的<br> 在试图访问一个变量时JS引擎会从当前作用域开始向上查找直到Global全局作用域停止<br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var A;//全局作用域</div><div class="line">function B()</div><div class="line">&#123;</div><div class="line">    var C;//C位于B函数的作用域</div><div class="line">    function D()</div><div class="line">    &#123;</div><div class="line">        var E;//E位于D函数的作用域</div><div class="line">        alert(A)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当alert(A)时, JS引擎沿着D的作用域, B的作用域, 全局作用域的顺序进行查找.<br>这三个作用域组成的有序集合就成为作用域链<br>至于为什么叫链, 你可以理解和链表有相似之处, 深层的作用域会能够访问到上层作用域, 就如同链表中两个连续节点能够单向访问一样</p>
+<h3 id="6-谈谈this对象的理解。"><a href="#6-谈谈this对象的理解。" class="headerlink" title="6.谈谈this对象的理解。"></a>6.谈谈this对象的理解。</h3><p> 详细讲解: <a href="http://www.cnblogs.com/nuanriqingfeng/p/5794632.html" target="_blank" rel="external">http://www.cnblogs.com/nuanriqingfeng/p/5794632.html</a></p>
+<p> this是函数运行时自动生成的一个内部对象，只能在函数内部使用，但总指向调用它的对象。</p>
+<p>通过以下几个例子加深对this的理解。</p>
+<ul>
+<li>（1）作为函数调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var name = &apos;Jenny&apos;;</div><div class="line">function person() &#123;</div><div class="line">    return this.name;</div><div class="line">&#125;</div><div class="line">console.log(person());  //Jenny</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面这个例子在全局作用域中调用person()，此时的调用对象为window，因此this指向window，在window中定义了name变量，因此this.name相当于window.name，为Jenny。</p>
+<ul>
+<li>（2）作为对象的方法调用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var name = &apos;Jenny&apos;;</div><div class="line">var obj = &#123;</div><div class="line">    name: &apos;Danny&apos;,</div><div class="line">    person: function() &#123;</div><div class="line">        return this.name;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">console.log(obj.person());  //Danny</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在这个例子中，person()函数在obj对象中定义，调用时是作为obj对象的方法进行调用，因此此时的this指向obj，obj里面定义了name属性，值为Danny，因此this.name = “Danny”。</p>
+<ul>
+<li>（3）作为构造函数调用</li>
+</ul>
+<p>作为构造函数调用和普通函数调用的区别是，构造函数使用new关键字创建一个实例，此时this指向实例对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function person() &#123;</div><div class="line">    return new person.prototype.init();</div><div class="line">&#125;</div><div class="line">person.prototype = &#123;</div><div class="line">    init: function() &#123;</div><div class="line">        return this.name;</div><div class="line">    &#125;,</div><div class="line">    name: &apos;Brain&apos;</div><div class="line">&#125;;</div><div class="line">console.log(person().name); //undefined</div></pre></td></tr></table></figure>
+<ul>
+<li>（4）apply和call</li>
+</ul>
+<p>使用apply()和call()可以改变调用函数的对象，第一个参数为改变后调用这个函数的对象，其中apply()的第二个参数为一个数组，call的第二个参数为每个参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function person() &#123;</div><div class="line">    return this.name;</div><div class="line">&#125;</div><div class="line">var obj = &#123;</div><div class="line">    name: &apos;Jenny&apos;,</div><div class="line">    age: 18</div><div class="line">&#125;;</div><div class="line">console.log(person.apply(obj));  //Jenny</div></pre></td></tr></table></figure>
+<h3 id="7-什么是window对象-什么是document对象"><a href="#7-什么是window对象-什么是document对象" class="headerlink" title="7.什么是window对象? 什么是document对象?"></a>7.什么是window对象? 什么是document对象?</h3><p> 详情请看参考资料: <a href="http://www.w3school.com.cn/jsref/dom_obj_window.asp" target="_blank" rel="external">http://www.w3school.com.cn/jsref/dom_obj_window.asp</a></p>
+<p> 简单来说，document是window的一个对象属性。<br>Window 对象表示浏览器中打开的窗口。<br>如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。<br>所有的全局函数和对象都属于Window 对象的属性和方法。<br>document   对 Document 对象的只读引用。</p>
+<h3 id="8-null-和-undefined-有何区别？"><a href="#8-null-和-undefined-有何区别？" class="headerlink" title="8.null 和 undefined 有何区别？"></a>8.null 和 undefined 有何区别？</h3><p> null        表示一个对象被定义了，值为“空值”；<br>undefined   表示不存在这个值。</p>
+<ul>
+<li>typeof undefined<br>//“undefined”<br>undefined :是一个表示”无”的原始值或者说表示”缺少值”，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；<br>例如变量被声明了，但没有赋值时，就等于undefined。</li>
+<li>typeof null<br>//“object”<br>null : 是一个对象(空对象, 没有任何属性和方法)；<br>例如作为函数的参数，表示该函数的参数不是对象；</li>
+</ul>
+<p>注意：<br>  在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined</p>
+<h3 id="9-写一个通用的事件侦听器函数-机试题-。"><a href="#9-写一个通用的事件侦听器函数-机试题-。" class="headerlink" title="9.写一个通用的事件侦听器函数(机试题)。"></a>9.写一个通用的事件侦听器函数(机试题)。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line">markyun.Event = &#123;</div><div class="line">  //页面加载完成后</div><div class="line">  readyEvent: function(fn) &#123;</div><div class="line">      if (fn == null) &#123;</div><div class="line">          fn = document;</div><div class="line">      &#125;</div><div class="line">      var oldonload = window.onload;</div><div class="line">      if (typeof window.onload != &apos;function&apos;) &#123;</div><div class="line">          window.onload = fn;</div><div class="line">      &#125;else&#123;</div><div class="line">          window.onload = function() &#123;</div><div class="line">              oldonload();</div><div class="line">              fn();</div><div class="line">          &#125;;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div><div class="line">  //视能力分别使用 demo0 || demo1 || IE 方式来绑定事件</div><div class="line">  //参数：操作的元素，事件名称，事件处理程序</div><div class="line">  addEvent: function(element,type,handler) &#123;</div><div class="line">      if (element.addEventListener) &#123;</div><div class="line">          //事件类型、需要执行的函数、是否捕捉</div><div class="line">          element.addEventListener(type,handler,false);</div><div class="line">      &#125;else if (element.attachEvent) &#123;</div><div class="line">          element.attachEvent(&apos;on&apos; + type, function() &#123;</div><div class="line">              handler.call(element);</div><div class="line">          &#125;);</div><div class="line">      &#125;else &#123;</div><div class="line">          element[&apos;on&apos; + type] = handler;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div><div class="line">  //移除事件</div><div class="line">  removeEvent: function(element,type,handler) &#123;</div><div class="line">      if (element.removeEventListener) &#123;</div><div class="line">          element.removeEventListener(type,handler,false);</div><div class="line">      &#125;else if (element.datachEvent) &#123;</div><div class="line">          element.datachEvent(&apos;on&apos; + type,handler);</div><div class="line">      &#125;else&#123;</div><div class="line">          element[&apos;on&apos; + type] = null;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div><div class="line">  //阻止事件（主要是事件冒泡，因为IE不支持事件捕获）</div><div class="line">  stopPropagation: function(ev) &#123;</div><div class="line">      if (ev.stopPropagation) &#123;</div><div class="line">          ev.stopPropagation();</div><div class="line">      &#125;else &#123;</div><div class="line">          ev.cancelBubble = true;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div><div class="line">  //取消事件的默认行为</div><div class="line">  preventDefault: function(event) &#123;</div><div class="line">      if (event.preventDefault) &#123;</div><div class="line">          event.preventDefault();</div><div class="line">      &#125;else&#123;</div><div class="line">          event.returnValue = false;</div><div class="line">      &#125;</div><div class="line">  &#125;,</div><div class="line">  //获取事件目标</div><div class="line">  getTarget: function(event) &#123;</div><div class="line">      return event.target || event.srcElemnt;</div><div class="line">  &#125;,</div><div class="line">  //获取event对象的引用，取到事件的所有信息，确保随时能使用event；</div><div class="line">  getEvent: function(e) &#123;</div><div class="line">      var ev = e || window.event;</div><div class="line">      if (!ev) &#123;</div><div class="line">          var c = this.getEvent.caller;</div><div class="line">          while(c) &#123;</div><div class="line">              ev = c.argument[0];</div><div class="line">              if (ev &amp;&amp; Event == ev.constructor) &#123;</div><div class="line">                  break;</div><div class="line">              &#125;</div><div class="line">              c = c.caller;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">      retrun ev;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="10-“1”-“2”-“3”-map-parseInt-答案是多少？"><a href="#10-“1”-“2”-“3”-map-parseInt-答案是多少？" class="headerlink" title="10.[“1”, “2”, “3”].map(parseInt) 答案是多少？"></a>10.[“1”, “2”, “3”].map(parseInt) 答案是多少？</h3><p> [1,NaN,NaN]</p>
+<p>因为 parseInt 需要两个参数(val,radix)，其中 radix 表示解析时用的基数。<br>map 传了3个(element,index,array)，对应的 radix 不合法导致解析失败。</p>
+<h3 id="11-什么是闭包（closure），为什么要用它？"><a href="#11-什么是闭包（closure），为什么要用它？" class="headerlink" title="11.什么是闭包（closure），为什么要用它？"></a>11.什么是闭包（closure），为什么要用它？</h3><p> 闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量，利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。</p>
+<p>闭包特性：</p>
+<ul>
+<li>(1)函数内再嵌套函数</li>
+<li>(2)内部函数可以引用外层的参数和变量</li>
+<li>(3)参数和变量不会被垃圾回收机制回收</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//li节点的onclick事件都能正确的弹出当前被点击的li索引</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li&gt; index = 0 &lt;/li&gt;</div><div class="line">  &lt;li&gt; index = 1 &lt;/li&gt;</div><div class="line">  &lt;li&gt; index = 2 &lt;/li&gt;</div><div class="line">  &lt;li&gt; index = 3 &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">  var nodes = document.getElementsByTagName(&apos;li&apos;);</div><div class="line">  for(i = 0;i&lt;nodes.length;i+=1) &#123;</div><div class="line">      nodes[i].onclick = function() &#123;</div><div class="line">          console.log(i+1); //不使用闭包的话，值每次都是4</div><div class="line">      &#125;(4);</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="12-new操作符具体干了什么呢"><a href="#12-new操作符具体干了什么呢" class="headerlink" title="12.new操作符具体干了什么呢?"></a>12.new操作符具体干了什么呢?</h3><ul>
+<li>(1)创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。</li>
+<li>(2)属性和方法被加入到 this 引用的对象中。</li>
+<li>(3)新创建的对象由 this 所引用，并且最后隐式的返回 this 。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;&#125;;</div><div class="line">obj.__proto__ = Base.prototype;</div><div class="line">Base.call(obj);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="13-用原生JavaScript的实现过什么功能吗？"><a href="#13-用原生JavaScript的实现过什么功能吗？" class="headerlink" title="13.用原生JavaScript的实现过什么功能吗？"></a>13.用原生JavaScript的实现过什么功能吗？</h3><p> 原生JavaScript能实现的功能,详情: <a href="http://bbs.csdn.net/topics/390565578" target="_blank" rel="external">http://bbs.csdn.net/topics/390565578</a></p>
+<h3 id="14-Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？"><a href="#14-Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？" class="headerlink" title="14.Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？"></a>14.Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</h3><p> 这个函数是: <code>hasOwnProperty</code><br>//<br>JavaScript 中 hasOwnProperty 函数方法是返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。<br>//<br>使用方法：<br>object.hasOwnProperty(proName)<br>其中参数object是必选项，一个对象的实例。<br>proName是必选项，一个属性名称的字符串值。<br>//<br>如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。</p>
+<h3 id="15-对JSON的了解？"><a href="#15-对JSON的了解？" class="headerlink" title="15.对JSON的了解？"></a>15.对JSON的了解？</h3><p> JSON(JavaScript Object Notation)是一种轻量级的数据交换格式。<br>它是基于JavaScript的一个子集。数据格式简单，易于读写，占用带宽小。</p>
+<p>如： <code>{&quot;age&quot;:&quot;12&quot;, &quot;name&quot;:&quot;back&quot;}</code></p>
+<h3 id="16-Ajax-是什么-如何创建一个Ajax？"><a href="#16-Ajax-是什么-如何创建一个Ajax？" class="headerlink" title="16.Ajax 是什么? 如何创建一个Ajax？"></a>16.Ajax 是什么? 如何创建一个Ajax？</h3><p> ajax的全称：Asynchronous Javascript And XML。<br>异步传输+js+xml。<br>所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。</p>
+<ul>
+<li>(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象</li>
+<li>(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息</li>
+<li>(3)设置响应HTTP请求状态变化的函数</li>
+<li>(4)发送HTTP请求</li>
+<li>(5)获取异步调用返回的数据</li>
+<li>(6)使用JavaScript和DOM实现局部刷新</li>
+</ul>
+<h3 id="17-DOM操作——怎样添加、移除、移动、复制、创建和查找节点"><a href="#17-DOM操作——怎样添加、移除、移动、复制、创建和查找节点" class="headerlink" title="17.DOM操作——怎样添加、移除、移动、复制、创建和查找节点?"></a>17.DOM操作——怎样添加、移除、移动、复制、创建和查找节点?</h3><ul>
+<li><p>(1)创建新节点<br>createDocumentFragment()    //创建一个DOM片段<br>createElement()   //创建一个具体的元素<br>createTextNode()   //创建一个文本节点</p>
+</li>
+<li><p>(2)添加、移除、替换、插入<br>appendChild()<br>removeChild()<br>replaceChild()<br>insertBefore() //在已有的子节点前插入一个新的子节点</p>
+</li>
+<li><p>(3)查找<br>getElementsByTagName()    //通过标签名称<br>getElementsByName()    //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)<br>getElementById()    //通过元素Id，唯一性</p>
+</li>
+</ul>
+<h3 id="18-call-和-apply-的作用和区别？"><a href="#18-call-和-apply-的作用和区别？" class="headerlink" title="18 .call() 和 .apply() 的作用和区别？"></a>18 .call() 和 .apply() 的作用和区别？</h3><p> 1、call，apply都属于Function.prototype的一个方法，它是JavaScript引擎内在实现的，因为属于Function.prototype，所以每个Function对象实例(就是每个方法)都有call，apply属性。既然作为方法的属性，那它们的使用就当然是针对方法的了，这两个方法是容易混淆的，因为它们的作用一样，只是使用方式不同。</p>
+<p>2、语法：foo.call(this, arg1,arg2,arg3) == foo.apply(this, arguments) == this.foo(arg1, arg2, arg3);</p>
+<p>3、相同点：两个方法产生的作用是完全一样的。</p>
+<p>4、不同点：方法传递的参数不同。</p>
+<h3 id="19-数组对象有哪些原生方法，列举一下？"><a href="#19-数组对象有哪些原生方法，列举一下？" class="headerlink" title="19.数组对象有哪些原生方法，列举一下？"></a>19.数组对象有哪些原生方法，列举一下？</h3><p> 详细用法参考: <a href="http://www.jb51.net/article/34711.htm" target="_blank" rel="external">http://www.jb51.net/article/34711.htm</a></p>
+<p> 赋值方法 (Mutator methods): 这些方法直接修改数组自身.</p>
+<ul>
+<li>pop 和 push </li>
+<li>shift 和 unshift </li>
+<li>splice </li>
+<li>reverse </li>
+<li>sort </li>
+</ul>
+<p>访问方法(Accessor methods) : 这些方法只是返回相应的结果，而不会修改数组本身 ;</p>
+<ul>
+<li>concat </li>
+<li>join </li>
+<li>slice</li>
+<li>toString </li>
+<li>indexOf 和 lastIndexOf</li>
+</ul>
+<p>迭代方法（Iteration methods）:</p>
+<ul>
+<li>forEach </li>
+<li>map</li>
+<li>filter </li>
+<li>every 和 some</li>
+<li>reduce 和 reduceRight</li>
+</ul>
+<h3 id="20-JavaScript中的作用域与变量声明提升？"><a href="#20-JavaScript中的作用域与变量声明提升？" class="headerlink" title="20.JavaScript中的作用域与变量声明提升？"></a>20.JavaScript中的作用域与变量声明提升？</h3><h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p> 作用域详情: <a href="http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html" target="_blank" rel="external">http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html</a></p>
+<p> 任何程序设计语言都有作用域的概念，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。</p>
+<h4 id="变量声明，命名，和提升"><a href="#变量声明，命名，和提升" class="headerlink" title="变量声明，命名，和提升"></a>变量声明，命名，和提升</h4><p> 变量声明提升详情: <a href="http://blog.csdn.net/sunxing007/article/details/9034253" target="_blank" rel="external">http://blog.csdn.net/sunxing007/article/details/9034253</a></p>
+<p>在javascript，变量有4种基本方式进入作用域：</p>
+<ul>
+<li>1.语言内置：所有的作用域里都有this和arguments；(译者注：经过测试arguments在全局作用域是不可见的)</li>
+<li>2.形式参数：函数的形式参数会作为函数体作用域的一部分；</li>
+<li>3.函数声明：像这种形式：function foo(){}；</li>
+<li>4.变量声明：像这样：var foo；</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/03/wangluo/" rel="next" title="python网络编程">
+                <i class="fa fa-chevron-left"></i> python网络编程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/ai.jpg"
+               alt="张健伟" />
+          <p class="site-author-name" itemprop="name">张健伟</p>
+          <p class="site-description motion-element" itemprop="description">梦虽虚幻,却是自己的梦想;位虽低微,确是自己的岗位;屋虽简陋,却是自己的家;志虽渺小,却是自己的追求!!!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Mrzhangjwei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5340471695" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/Mrzhangjwei" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  博客园
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/mrzhangjwei" target="_blank" title="CSDN博客">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://michaelxiang.me" title="hexo改变主题" target="_blank">hexo改变主题</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://521cjj.top/resume" title="个人简历" target="_blank">个人简历</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-介绍JavaScript的基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">1.介绍JavaScript的基本数据类型?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JavaScript原型-原型链-有什么特点"><span class="nav-number">2.</span> <span class="nav-text">2.JavaScript原型,原型链?有什么特点?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-JavaScript如何实现继承"><span class="nav-number">3.</span> <span class="nav-text">3.JavaScript如何实现继承?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-JavaScript创建对象的几种方式"><span class="nav-number">4.</span> <span class="nav-text">4.JavaScript创建对象的几种方式?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-谈谈this对象的理解。"><span class="nav-number">5.</span> <span class="nav-text">6.谈谈this对象的理解。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-什么是window对象-什么是document对象"><span class="nav-number">6.</span> <span class="nav-text">7.什么是window对象? 什么是document对象?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-null-和-undefined-有何区别？"><span class="nav-number">7.</span> <span class="nav-text">8.null 和 undefined 有何区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-写一个通用的事件侦听器函数-机试题-。"><span class="nav-number">8.</span> <span class="nav-text">9.写一个通用的事件侦听器函数(机试题)。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-“1”-“2”-“3”-map-parseInt-答案是多少？"><span class="nav-number">9.</span> <span class="nav-text">10.[“1”, “2”, “3”].map(parseInt) 答案是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-什么是闭包（closure），为什么要用它？"><span class="nav-number">10.</span> <span class="nav-text">11.什么是闭包（closure），为什么要用它？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-new操作符具体干了什么呢"><span class="nav-number">11.</span> <span class="nav-text">12.new操作符具体干了什么呢?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-用原生JavaScript的实现过什么功能吗？"><span class="nav-number">12.</span> <span class="nav-text">13.用原生JavaScript的实现过什么功能吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？"><span class="nav-number">13.</span> <span class="nav-text">14.Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-对JSON的了解？"><span class="nav-number">14.</span> <span class="nav-text">15.对JSON的了解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-Ajax-是什么-如何创建一个Ajax？"><span class="nav-number">15.</span> <span class="nav-text">16.Ajax 是什么? 如何创建一个Ajax？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-DOM操作——怎样添加、移除、移动、复制、创建和查找节点"><span class="nav-number">16.</span> <span class="nav-text">17.DOM操作——怎样添加、移除、移动、复制、创建和查找节点?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-call-和-apply-的作用和区别？"><span class="nav-number">17.</span> <span class="nav-text">18 .call() 和 .apply() 的作用和区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-数组对象有哪些原生方法，列举一下？"><span class="nav-number">18.</span> <span class="nav-text">19.数组对象有哪些原生方法，列举一下？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-JavaScript中的作用域与变量声明提升？"><span class="nav-number">19.</span> <span class="nav-text">20.JavaScript中的作用域与变量声明提升？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域"><span class="nav-number">19.1.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量声明，命名，和提升"><span class="nav-number">19.2.</span> <span class="nav-text">变量声明，命名，和提升</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张健伟</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/affix.js"></script>
+<script type="text/javascript" src="/js/src/bookstrap.js"></script>
+
+
+</body>
+
+</html>
