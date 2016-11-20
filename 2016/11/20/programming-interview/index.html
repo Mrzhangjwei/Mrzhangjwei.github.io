@@ -84,23 +84,33 @@
 
 
 
-<meta name="description" content="Github系列之［向Github提交代码］本文引用于http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/1.SSH 你拥有了一个 GitHub 账号之后，就可以自由的 clone 或者下载其他项目，也可以创建自己的项目，但是你没法提交代码。仔细想想也知道，肯定不可能随意就能提交代码的，如果随意可以提交代码，那么 GitH">
+<meta name="description" content="1.什么是进程,线程,这两个的区别? 进程(Process) : 进程是程序的一次执行,进程也是资源分配的基本单位； 线程(Thread) : 线程是CPU独立运行和独立调度的基本单位,线程可以理解为进程中的执行的一段程序片段;
+ 两者之间的联系:进程和线程都是操作系统所运行的程序运行的基本单位.
+ 两者的区别是:
+
+进程具有独立的空间地址,一个进程崩溃后,在保护模式下不会对其它进程产生影响;
+线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github系列之［向Github提交代码］">
-<meta property="og:url" content="http://yoursite.com/2016/11/03/github-submit/index.html">
+<meta property="og:title" content="系统编程的面试题">
+<meta property="og:url" content="http://yoursite.com/2016/11/20/programming-interview/index.html">
 <meta property="og:site_name" content="Mrzhangjwei">
-<meta property="og:description" content="Github系列之［向Github提交代码］本文引用于http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/1.SSH 你拥有了一个 GitHub 账号之后，就可以自由的 clone 或者下载其他项目，也可以创建自己的项目，但是你没法提交代码。仔细想想也知道，肯定不可能随意就能提交代码的，如果随意可以提交代码，那么 GitH">
-<meta property="og:image" content="http://img.blog.csdn.net/20161029161513353">
-<meta property="og:image" content="http://img.blog.csdn.net/20161029161816643">
-<meta property="og:image" content="http://img.blog.csdn.net/20161029162256613">
-<meta property="og:image" content="http://img.blog.csdn.net/20161029162442505">
-<meta property="og:image" content="http://img.blog.csdn.net/20161029162731115">
-<meta property="og:image" content="http://img.blog.csdn.net/20161029162949772">
-<meta property="og:updated_time" content="2016-11-02T15:38:21.212Z">
+<meta property="og:description" content="1.什么是进程,线程,这两个的区别? 进程(Process) : 进程是程序的一次执行,进程也是资源分配的基本单位； 线程(Thread) : 线程是CPU独立运行和独立调度的基本单位,线程可以理解为进程中的执行的一段程序片段;
+ 两者之间的联系:进程和线程都是操作系统所运行的程序运行的基本单位.
+ 两者的区别是:
+
+进程具有独立的空间地址,一个进程崩溃后,在保护模式下不会对其它进程产生影响;
+线">
+<meta property="og:image" content="http://img.blog.csdn.net/20161115191437831">
+<meta property="og:updated_time" content="2016-11-20T13:07:26.292Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github系列之［向Github提交代码］">
-<meta name="twitter:description" content="Github系列之［向Github提交代码］本文引用于http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/1.SSH 你拥有了一个 GitHub 账号之后，就可以自由的 clone 或者下载其他项目，也可以创建自己的项目，但是你没法提交代码。仔细想想也知道，肯定不可能随意就能提交代码的，如果随意可以提交代码，那么 GitH">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20161029161513353">
+<meta name="twitter:title" content="系统编程的面试题">
+<meta name="twitter:description" content="1.什么是进程,线程,这两个的区别? 进程(Process) : 进程是程序的一次执行,进程也是资源分配的基本单位； 线程(Thread) : 线程是CPU独立运行和独立调度的基本单位,线程可以理解为进程中的执行的一段程序片段;
+ 两者之间的联系:进程和线程都是操作系统所运行的程序运行的基本单位.
+ 两者的区别是:
+
+进程具有独立的空间地址,一个进程崩溃后,在保护模式下不会对其它进程产生影响;
+线">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20161115191437831">
 
 
 
@@ -121,10 +131,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/03/github-submit/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/20/programming-interview/"/>
 
 
-  <title> Github系列之［向Github提交代码］ | Mrzhangjwei </title>
+  <title> 系统编程的面试题 | Mrzhangjwei </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +264,7 @@
             
             
               
-                Github系列之［向Github提交代码］
+                系统编程的面试题
               
             
           </h1>
@@ -266,8 +276,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-03T15:10:52+08:00" content="2016-11-03">
-              2016-11-03
+            <time itemprop="dateCreated" datetime="2016-11-20T21:07:26+08:00" content="2016-11-20">
+              2016-11-20
             </time>
           </span>
 
@@ -294,35 +304,41 @@
       
 
       
-        <h2 id="Github系列之［向Github提交代码］"><a href="#Github系列之［向Github提交代码］" class="headerlink" title="Github系列之［向Github提交代码］"></a>Github系列之［向Github提交代码］</h2><h3 id="本文引用于http-stormzhang-com-github-2016-06-04-learn-github-from-zero4"><a href="#本文引用于http-stormzhang-com-github-2016-06-04-learn-github-from-zero4" class="headerlink" title="本文引用于http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/"></a>本文引用于<a href="http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/" target="_blank" rel="external">http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/</a></h3><h3 id="1-SSH"><a href="#1-SSH" class="headerlink" title="1.SSH"></a>1.SSH</h3><p> 你拥有了一个 GitHub 账号之后，就可以自由的 clone 或者下载其他项目，也可以创建自己的项目，但是你没法提交代码。仔细想想也知道，肯定不可能随意就能提交代码的，如果随意可以提交代码，那么 GitHub 上的项目岂不乱了套了，所以提交代码之前一定是需要某种授权的，而 GitHub 上一般都是基于 SSH 授权的。</p>
-<p>那么什么是 SSH 呢？ 简单点说，SSH是一种网络协议，用于计算机之间的加密登录。目前是每一台 Linux 电脑的标准配置。而大多数 Git 服务器都会选择使用 SSH 公钥来进行授权，所以想要在 GitHub 提交代码的第一步就是要先添加 SSH key 配置。</p>
-<h3 id="2-生成SSH-key"><a href="#2-生成SSH-key" class="headerlink" title="2.生成SSH key"></a>2.生成SSH key</h3><p>Linux 与 Mac 都是默认安装了 SSH ，而 Windows 系统安装了 Git Bash 应该也是带了 SSH 的。大家可以在终端（win下在 Git Bash 里）输入 ssh 如果出现以下提示证明你本机已经安装 SSH， 否则请搜索自行安装下。</p>
-<p> <img src="http://img.blog.csdn.net/20161029161513353" alt="linux下存在SSH的截图"></p>
-<p> 紧接着输入 ssh-keygen -t rsa ，什么意思呢？就是指定 rsa 算法生成密钥，接着连续三个回车键（不需要输入密码），然后就会生成两个文件 id_rsa 和 id_rsa.pub ，而 id_rsa 是密钥，id_rsa.pub 就是公钥。这两文件默认分别在如下目录里生成：</p>
-<p> <img src="http://img.blog.csdn.net/20161029161816643" alt="产生id_rsa密钥,id_rsa.pub公钥文件"></p>
-<p>Linux/Mac 系统 在 ~/.ssh 下，win系统在 /c/Documents and Settings/username/.ssh 下，都是隐藏文件，相信你们有办法查看的。</p>
-<p>接下来要做的是把 id_rsa.pub 的内容添加到 GitHub 上，这样你本地的 id_rsa 密钥跟 GitHub 上的 id_rsa.pub 公钥进行配对，授权成功才可以提交代码。</p>
-<h3 id="3-GitHub-上添加-SSH-key"><a href="#3-GitHub-上添加-SSH-key" class="headerlink" title="3.GitHub 上添加 SSH key"></a>3.GitHub 上添加 SSH key</h3><p> 第一步先在 GitHub 上的设置页面，点击最左侧 SSH and GPG keys ：</p>
-<p> <img src="http://img.blog.csdn.net/20161029162256613" alt="设置SSH"></p>
-<p> 然后点击右上角的 New SSH key 按钮：</p>
-<p>  <img src="http://img.blog.csdn.net/20161029162442505" alt="添加key"></p>
-<p> 需要做的只是在 Key 那栏把 id_rsa.pub 公钥文件里的内容复制粘贴进去就可以了（上述示例为了安全粘贴的公钥是无效的），Title 那栏不需要填写，点击 Add SSH key 按钮就ok了。</p>
-<p>这里提醒下，怎么查看 id_rsa.pub 文件的内容？</p>
-<p>Linux/Mac 用户执行以下命令：</p>
-<p> <img src="http://img.blog.csdn.net/20161029162731115" alt="linux下执行命令查找SSH keys的值"></p>
-<p> Windows用户，设置显示隐藏文件，可以使用 EditPlus 或者 Sublime 打开复制就行了。</p>
-<p>SSH key 添加成功之后，输入 ssh -T git@github.com 进行测试，如果出现以下提示证明添加成功了。</p>
-<p> <img src="http://img.blog.csdn.net/20161029162949772" alt="SSH key添加成功的界面"></p>
-<h3 id="4-Push-amp-Pull"><a href="#4-Push-amp-Pull" class="headerlink" title="4.Push &amp; Pull"></a>4.Push &amp; Pull</h3><p> 在提交代码之前我们先要了解两个命令，也是上次的文章没有介绍的，因为这两个命令需要跟远程仓库配合。</p>
-<p>Push ：直译过来就是「推」的意思，什么意思呢？如果你本地代码有更新了，那么就需要把本地代码推到远程仓库，这样本地仓库跟远程仓库就可以保持同步了。</p>
-<p>代码示例：<figure class="highlight plain"><figcaption><span>push origin master```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">意思就是把本地代码推到远程 master 分支。</div><div class="line"></div><div class="line">Pull：直译过来就是「拉」的意思，如果别人提交代码到远程仓库，这个时候你需要把远程仓库的最新代码拉下来，然后保证两端代码的同步。</div><div class="line"></div><div class="line">代码示例：``` git pull origin master</div></pre></td></tr></table></figure></p>
-<p>意思就是把远程最新的代码更新到本地。一般我们在 push 之前都会先 pull ，这样不容易冲突。</p>
-<h3 id="5-提交代码"><a href="#5-提交代码" class="headerlink" title="5.提交代码"></a>5.提交代码</h3><p> 详情请点击文章刚开始的链接，主要的代码如下：</p>
-<p> Clone自己的项目 进入到项目中 复制你的地址，执行如下命令：</p>
-  <figure class="highlight plain"><figcaption><span>clone 复制的地址  ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">```  git push origin master</div></pre></td></tr></table></figure>
-  <figure class="highlight plain"><figcaption><span>remote add origin 要上传的路径  ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">查看我们当前项目有哪些远程仓库可以执行如下命令：</div><div class="line"> ```  git remove -v</div></pre></td></tr></table></figure>
-<p> 接下来，我们本地的仓库就可以向远程仓库进行代码提交了：<br>      <code>git push origin master</code></p>
-
+        <h3 id="1-什么是进程-线程-这两个的区别"><a href="#1-什么是进程-线程-这两个的区别" class="headerlink" title="1.什么是进程,线程,这两个的区别?"></a>1.什么是进程,线程,这两个的区别?</h3><p> 进程(Process) : 进程是程序的一次执行,进程也是资源分配的基本单位；<br> 线程(Thread) : 线程是CPU独立运行和独立调度的基本单位,线程可以理解为进程中的执行的一段程序片段;</p>
+<p> 两者之间的联系:进程和线程都是操作系统所运行的程序运行的基本单位.</p>
+<p> 两者的区别是:</p>
+<ul>
+<li>进程具有独立的空间地址,一个进程崩溃后,在保护模式下不会对其它进程产生影响;</li>
+<li>线程只是一个进程的不同执行路径,线程有自己的堆栈和局部变量,但线程之间没有单独的地址空间,一个线程死掉就等于整个进程死掉;</li>
+<li>进程是资源分配和拥有的单位,同一个进程内的线程共享进程的资源;</li>
+<li>线程是处理器调度的基本单位,但进程不是;</li>
+<li>二者均可并发执行;</li>
+</ul>
+<h3 id="2-进程间通讯有几种方法-分别是什么"><a href="#2-进程间通讯有几种方法-分别是什么" class="headerlink" title="2.进程间通讯有几种方法?分别是什么?"></a>2.进程间通讯有几种方法?分别是什么?</h3><ul>
+<li><p>管道（pipe）:  管道是一种半双工的通信方式，数据只能单向流动，而且只能在具有亲缘关系的进程间使用。进程的亲缘关系通常是指父子进程关系。</p>
+</li>
+<li><p>流管道(s_pipe):  为半双工，可以双向传输.</p>
+</li>
+<li><p>有名管道（named pipe）:  有名管道也是半双工的通信方式，但是它允许无亲缘关系进程间的通信。</p>
+</li>
+<li><p>信号（signal）:  信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。</p>
+</li>
+<li><p>消息队列 ( message queue ) :  消息队列是由消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
+</li>
+<li><p>共享内存( shared memory ) :  共享内存就是映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问。共享内存是最快的 IPC 方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制，如信号两，配合使用，来实现进程间的同步和通信。</p>
+</li>
+<li><p>信号量( semophore )  :  信号量是一个计数器，可以用来控制多个进程对共享资源的访问。它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。</p>
+</li>
+<li><p>套接字（socket) :  套解口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同及其间的进程通信。</p>
+</li>
+</ul>
+<h3 id="3-理解socket"><a href="#3-理解socket" class="headerlink" title="3.理解socket"></a>3.理解socket</h3><p> 详情参考:  <a href="http://www.cnblogs.com/dolphinX/p/3460545.html" target="_blank" rel="external">http://www.cnblogs.com/dolphinX/p/3460545.html</a></p>
+<p> 我们知道两个进程如果需要进行通讯最基本的一个前提能能够唯一的标示一个进程，在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，这时候我们需要另辟它径了，我们知道IP层的ip地址可以唯一标示主机，而TCP层协议和端口号可以唯一标示主机的一个进程，这样我们可以利用ip地址＋协议＋端口号唯一标示网络中的一个进程。</p>
+<p> 能够唯一标示网络中的进程后，它们就可以利用socket进行通信了，什么是socket呢？我们经常把socket翻译为套接字，socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用已实现进程在网络中通信。</p>
+<p><img src="http://img.blog.csdn.net/20161115191437831" alt="这里写图片描述"></p>
+<p>socket起源于UNIX，在Unix一切皆文件哲学的思想下，socket是一种”打开—读/写—关闭”模式的实现，服务器和客户端各自维护一个”文件”，在建立连接打开后，可以向自己文件写入内容供对方读取或者读取对方内容，通讯结束时关闭文件。</p>
+<h3 id="4-快速排序"><a href="#4-快速排序" class="headerlink" title="4.快速排序"></a>4.快速排序</h3><p> 关于八大排序的参考文档:(各种排序方法的思想)<br>  <a href="http://blog.csdn.net/hguisu/article/details/7776068" target="_blank" rel="external">http://blog.csdn.net/hguisu/article/details/7776068</a></p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
       
     </div>
 
@@ -347,16 +363,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/03/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/11/20/javascript-interview/" rel="next" title="JavaScript的基础知识点(面试题)">
+                <i class="fa fa-chevron-left"></i> JavaScript的基础知识点(面试题)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/03/django_view/" rel="prev" title="Django中视图和URL配置">
-                Django中视图和URL配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/20/link-import/" rel="prev" title="link和@import的区别">
+                link和@import的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +529,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github系列之［向Github提交代码］"><span class="nav-number">1.</span> <span class="nav-text">Github系列之［向Github提交代码］</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文引用于http-stormzhang-com-github-2016-06-04-learn-github-from-zero4"><span class="nav-number">1.1.</span> <span class="nav-text">本文引用于http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-SSH"><span class="nav-number">1.2.</span> <span class="nav-text">1.SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-生成SSH-key"><span class="nav-number">1.3.</span> <span class="nav-text">2.生成SSH key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-GitHub-上添加-SSH-key"><span class="nav-number">1.4.</span> <span class="nav-text">3.GitHub 上添加 SSH key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Push-amp-Pull"><span class="nav-number">1.5.</span> <span class="nav-text">4.Push & Pull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-提交代码"><span class="nav-number">1.6.</span> <span class="nav-text">5.提交代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是进程-线程-这两个的区别"><span class="nav-number">1.</span> <span class="nav-text">1.什么是进程,线程,这两个的区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-进程间通讯有几种方法-分别是什么"><span class="nav-number">2.</span> <span class="nav-text">2.进程间通讯有几种方法?分别是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-理解socket"><span class="nav-number">3.</span> <span class="nav-text">3.理解socket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-快速排序"><span class="nav-number">4.</span> <span class="nav-text">4.快速排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number"></span> <span class="nav-text">未完待续</span></a></div>
             
           </div>
         </section>
